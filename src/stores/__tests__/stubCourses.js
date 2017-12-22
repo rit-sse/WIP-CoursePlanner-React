@@ -1,5 +1,3 @@
-// @flow
-
 import { Course } from '../models/Course';
 
 export const swen101 = new Course(

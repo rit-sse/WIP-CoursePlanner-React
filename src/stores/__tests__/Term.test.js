@@ -1,5 +1,3 @@
-// @flow
-
 import { Term } from '../models/Term';
 import {swen101, swen250, swen261} from './stubCourses';
 
