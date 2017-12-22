@@ -1,4 +1,6 @@
-import Course from '../Course';
+// @flow
+
+import { Course } from '../models/Course';
 
 export const swen101 = new Course(
   'Software Engineering Seminar',

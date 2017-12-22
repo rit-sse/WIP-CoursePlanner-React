@@ -1,25 +1,10 @@
+// @flow
+
 import { observable, computed } from 'mobx';
-import Plan from './Plan';
+import Plan from './models/Plan';
 
-class Store {
+export class Store {
 
-  @observable mainPlan = {};
-
-  @computed get sum() {
-    return this.orders.reduce((sum, curr) => {
-      return isNaN(curr.value) ? sum : (sum + curr.value);
-    }, 0) || 0;
-  }
-
-  addOrder = (name, val) => {
-    val = parseFloat(val);
-    this.orders.push(new Order(name, val));
-  }
-
-  removeOrder = () => {
-    this.orders.pop();
-  }
+  @observable mainPlan = new Plan();
   
 }
-
-export default Store;
