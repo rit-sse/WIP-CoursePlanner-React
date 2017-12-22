@@ -1,11 +1,9 @@
 import { observable, computed } from 'mobx';
-import Order from './Order';
+import Plan from './Plan';
 
 class Store {
 
-  @observable orders = [];
-  nameField;
-  ValField;
+  @observable mainPlan = {};
 
   @computed get sum() {
     return this.orders.reduce((sum, curr) => {
