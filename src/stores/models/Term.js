@@ -9,7 +9,7 @@ export class Term {
   constructor(
     title: string = 'Fall',
     courses: Array<Course> = [],
-  ){
+  ) {
     this.title = title;
     this.courses = courses;
   }
@@ -20,11 +20,11 @@ export class Term {
     num: string = '000',
     credits: number = 0,
     prereqs: Array<Course> = [],
-  ){
+  ) {
     this.courses.push(new Course(name, dept, num, credits, prereqs));
   }
 
-  removeCourse(course: Course){
+  removeCourse(course: Course) {
     this.courses = this.courses.filter(thisCourse =>  JSON.stringify(course) !== JSON.stringify(thisCourse));
   }
 }

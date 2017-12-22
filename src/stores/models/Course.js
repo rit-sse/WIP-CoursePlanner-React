@@ -13,7 +13,7 @@ export class Course {
     num: string = '000',
     credits: number = 0,
     prereqs: Array<Course> = [],
-  ){
+  ) {
     this.name = name;
     this.dept = dept;
     this.num = num;
