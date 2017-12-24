@@ -1,7 +1,10 @@
 // @flow
 
+import { ID } from '../../utils/id';
+
 export class CourseModel {
   name: string;
+  id: string;
   dept: string;
   num: string; // We never need to do math with this, so we'll leave it as a string
   credits: number;
@@ -19,6 +22,7 @@ export class CourseModel {
     this.num = num;
     this.credits = credits;
     this.prereqs = prereqs;
+    this.id = ID();
   }
 
 }

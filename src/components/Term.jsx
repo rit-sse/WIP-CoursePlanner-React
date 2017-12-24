@@ -21,7 +21,11 @@ export const Term = observer( (props: Props) => (
       {props.term.courses.reduce((acc, course) => acc + course.credits, 0)} Credits
     </div>
     {props.term.courses.map(
-      course => <Course colorScheme={props.store.mainPlan.colorScheme} course={course} />
+      course => <Course
+        colorScheme={props.store.mainPlan.colorScheme}
+        course={course}
+        key={course.id}
+      />
     )}
   </div>
 ));
