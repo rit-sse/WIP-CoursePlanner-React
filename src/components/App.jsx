@@ -4,6 +4,7 @@ import React from 'react';
 import { observer } from 'mobx-react';
 import { Store } from '../stores/Store';
 import { Course } from './Course';
+import { Term } from './Term';
 import { CourseModel } from '../stores/models/CourseModel';
 import '../styles/main.scss';
 
