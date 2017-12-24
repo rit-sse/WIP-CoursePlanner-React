@@ -9,7 +9,7 @@
     "test:coverage": "jest --verbose --coverage",
     "typecheck": "flow check src",
     "lint": "eslint ./src",
-    "build": "webpack --progress -p",
+    "build": "npm run lint && npm run typecheck && npm run test && webpack --progress -p",
     "start": "NODE_ENV=prod npm run build && http-server",
     "devServer": "NODE_ENV=dev node server.js"
   },
@@ -25,6 +25,7 @@
     "aphrodite": "^0.3.1",
     "babel-register": "^6.8.0",
     "css-loader": "^0.24.0",
+    "empty": "^0.10.1",
     "http-server": "^0.9.0",
     "mobx": "^2.1.5",
     "mobx-react": "^3.1.0",

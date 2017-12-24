@@ -3,7 +3,7 @@ import { render } from 'react-dom';
 import { AppContainer } from 'react-hot-loader';
 import Redbox from 'redbox-react';
 import a11y  from 'react-a11y';
-import Store from './stores/Store';
+import { Store } from './stores/Store';
 import App from './components/App';
 import {whyDidYouUpdate} from 'why-did-you-update';
 
