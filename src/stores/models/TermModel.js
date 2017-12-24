@@ -1,9 +1,11 @@
 // @flow
 
 import { CourseModel } from './CourseModel';
+import { ID } from '../../utils/id';
 
 export class TermModel {
   title: string;
+  id: string;
   courses: Array<CourseModel>;
 
   constructor(
@@ -12,6 +14,7 @@ export class TermModel {
   ) {
     this.title = title;
     this.courses = courses;
+    this.id = ID();
   }
 
   addCourse(
