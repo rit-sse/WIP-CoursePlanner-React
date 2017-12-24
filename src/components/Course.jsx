@@ -30,4 +30,4 @@ export const Course = observer( (props: Props) => (
       </div>
     </div>
   </li>
-))
+));
