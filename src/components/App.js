@@ -1,41 +1,22 @@
 // @flow
-import React, {PropTypes} from 'react';
+
+import React from 'react';
 import { observer } from 'mobx-react';
-import MyComponent from './MyComponent';
+import { Store } from '../stores/Store';
+import { Course } from './Course';
+import { CourseModel } from '../stores/models/CourseModel';
 import '../styles/main.scss';
 
-const App = ({store}) => (
-  <div className="project">
-    <h3>{store.description}</h3>
-    <MyComponent store={store} />
-    <form>
-      <input
-        name="name"
-        ref={name => store.name = name}
-        type="text"
-      />
-      <input
-        name="value"
-        ref={val => store.value = val}
-        type="text"
-      />
-    </form>
-    Total: {store.sum} <br />
-    <button
-      onClick={() => {
-        store.addOrder(store.name.value, store.value.value);
-      }}
-    >
-      +
-    </button>
-    <button onClick={store.removeOrder}>
-      -
-    </button>
-  </div>
-);
-
-App.propTypes = {
-  store: PropTypes.object,
+type Props = {
+  store: Store
 };
+
+const myFirstCourse = new CourseModel();
+
+const App = (props: Props) => (
+  <React.Fragment>
+    <Course colorScheme={props.store.mainPlan.colorScheme} course={myFirstCourse} />
+  </React.Fragment>
+);
 
 export default observer(App);

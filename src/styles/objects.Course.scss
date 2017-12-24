@@ -1,4 +1,13 @@
+@import 'settings.constants.scss';
+
 .course {
+  list-style: none outside none;
+  padding: 0;
+  text-align: center;
+  width: $course-box-width;
+  height: $course-box-height;
+  color: $course-box-font-color;
+
   .wrapper {
     display: flex;
     flex-flow: column;
@@ -16,10 +25,13 @@
     margin-top: 0px;
     z-index: 2;
     margin-top: 1px;
+    line-height: 1.1;
+    color: inherit;
   }
 
   .header-background {
     background: inherit;
+    width: $course-box-width;
     position: absolute;
     top: 0;
     left: 0;
@@ -41,4 +53,5 @@
     font-size: x-small;
     line-height: 1.2em;
   }
+
 }
