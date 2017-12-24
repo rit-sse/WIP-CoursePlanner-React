@@ -1,14 +1,14 @@
 // @flow
 
-import { Course } from './Course';
+import { CourseModel } from './CourseModel';
 
-export class Term {
+export class TermModel {
   title: string;
-  courses: Array<Course>;
+  courses: Array<CourseModel>;
 
   constructor(
     title: string = 'Fall',
-    courses: Array<Course> = [],
+    courses: Array<CourseModel> = [],
   ) {
     this.title = title;
     this.courses = courses;
@@ -19,12 +19,12 @@ export class Term {
     dept: string = 'DEPT',
     num: string = '000',
     credits: number = 0,
-    prereqs: Array<Course> = [],
+    prereqs: Array<CourseModel> = [],
   ) {
-    this.courses.push(new Course(name, dept, num, credits, prereqs));
+    this.courses.push(new CourseModel(name, dept, num, credits, prereqs));
   }
 
-  removeCourse(course: Course) {
+  removeCourse(course: CourseModel) {
     this.courses = this.courses.filter(thisCourse =>  JSON.stringify(course) !== JSON.stringify(thisCourse));
   }
 }

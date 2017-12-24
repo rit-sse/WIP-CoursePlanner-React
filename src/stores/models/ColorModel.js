@@ -1,6 +1,6 @@
 // @flow
 
-export class Color {
+export class ColorModel {
   dept: string;
   color: string;
 

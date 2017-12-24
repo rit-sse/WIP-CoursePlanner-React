@@ -1,11 +1,11 @@
-import { Term } from '../models/Term';
+import { TermModel } from '../models/TermModel';
 import {swen101, swen250, swen261} from './stubCourses';
 
 describe('A Term', () => {
-  let myTerm: Term = new Term();
+  let myTerm: TermModel = new TermModel();
 
   beforeEach(() => {
-    myTerm = new Term();
+    myTerm = new TermModel();
   });
 
   it('should be empty be default', () => {

@@ -1,17 +1,21 @@
-/* Settings */
-@import "settings.colors.scss";
-@import "settings.breakpoints.scss";
+@import 'settings.colors.scss';
+@import 'settings.constants.scss';
 
-/* Tools */
+html, body {
+  height: 100%;
+  margin: 0;
+  padding: 0;
+  height: 100%;
+  background-color: $background;
+  font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
+  font-size: 14px;
+  line-height: 1.42857143;
+  color: $main-font-color;
+}
 
-/* Generic */
-
-/* Elements */
-
-/* Objects */
-@import "objects.myComponent.scss";
-
-/* Components */
-
-/* Trumps */
-
+li {
+  &.as-sortable-item {
+    background: none;
+    border: none;
+  }
+}
