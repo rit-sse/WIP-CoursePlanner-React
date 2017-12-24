@@ -4,7 +4,6 @@ import React from 'react';
 import { observer } from 'mobx-react';
 import { Store } from '../stores/Store';
 import { Term } from './Term';
-import { CourseModel } from '../stores/models/CourseModel';
 import '../styles/main.scss';
 
 type Props = {
@@ -12,5 +11,8 @@ type Props = {
 };
 
 export const App = observer((props: Props) => (
-  <Term store={props.store} />
+  <Term
+    store={props.store}
+    term={props.store.mainPlan.years[0].terms[0]}
+  />
 ));

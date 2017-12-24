@@ -6,6 +6,7 @@ import { CourseModel } from '../stores/models/CourseModel';
 import { ColorModel } from '../stores/models/ColorModel';
 import '../styles/objects.Course.scss';
 import '../styles/utilities.shadow.scss';
+import '../styles/utilities.center.scss';
 
 type Props = {
   colorScheme: Array<ColorModel>,
@@ -14,7 +15,7 @@ type Props = {
 
 export const Course = observer( (props: Props) => (
   <li
-    className="course shadow"
+    className="course shadow center"
     style={{
       'backgroundColor': props.colorScheme.find(
         thisColor => thisColor.dept === props.course.dept
@@ -23,8 +24,8 @@ export const Course = observer( (props: Props) => (
   >
     <i className="fa fa-exclamation prereq-warning-badge"></i>
     <div className="wrapper">
-      <h5 className="header-text">{props.course.dept} {props.course.num}</h5>
       <div className="header-background"></div>
+      <h5 className="header-text">{props.course.dept} {props.course.num}</h5>
       <div className="details">
         <p className="name">{props.course.name}</p>
         <p className="credits">[{props.course.credits}]</p>

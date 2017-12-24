@@ -18,7 +18,7 @@ export class TermModel {
     name: string = 'A New Course',
     dept: string = 'DEPT',
     num: string = '000',
-    credits: number = 0,
+    credits: number = 3,
     prereqs: Array<CourseModel> = [],
   ) {
     this.courses.push(new CourseModel(name, dept, num, credits, prereqs));

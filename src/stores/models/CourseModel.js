@@ -11,7 +11,7 @@ export class CourseModel {
     name: string = 'A New Course',
     dept: string = 'DEPT',
     num: string = '000',
-    credits: number = 0,
+    credits: number = 3,
     prereqs: Array<CourseModel> = [],
   ) {
     this.name = name;

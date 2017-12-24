@@ -1,0 +1,15 @@
+@import 'settings.constants.scss';
+@import 'settings.colors.scss';
+
+.term {
+  text-align: center;
+  background-color: $card-background;
+  width: $term-box-width;
+  padding-bottom: 20px;
+
+  .credits-sum {
+    font-size: $term-credits-font-size;
+    color: $light-gray;
+    margin-bottom: 4px;
+  }
+}
