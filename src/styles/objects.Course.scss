@@ -7,6 +7,7 @@
   width: $course-box-width;
   height: $course-box-height;
   color: $course-box-font-color;
+  margin-bottom: 10px;
 
   .wrapper {
     display: flex;
@@ -33,7 +34,6 @@
     background: inherit;
     width: $course-box-width;
     position: absolute;
-    top: 0;
     left: 0;
     right: 0;
     height: 1em;

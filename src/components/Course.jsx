@@ -5,6 +5,7 @@ import { observer } from 'mobx-react';
 import { CourseModel } from '../stores/models/CourseModel';
 import { ColorModel } from '../stores/models/ColorModel';
 import '../styles/objects.Course.scss';
+import '../styles/utilities.shadow.scss';
 
 type Props = {
   colorScheme: Array<ColorModel>,
@@ -13,7 +14,7 @@ type Props = {
 
 export const Course = observer( (props: Props) => (
   <li
-    className="course"
+    className="course shadow"
     style={{
       'backgroundColor': props.colorScheme.find(
         thisColor => thisColor.dept === props.course.dept
