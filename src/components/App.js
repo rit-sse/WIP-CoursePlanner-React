@@ -3,18 +3,12 @@
 import React from 'react';
 import { observer } from 'mobx-react';
 import { DragDropContext } from 'react-beautiful-dnd';
-import { Store } from '../stores/Store';
 import { Term } from './Term';
 import '../styles/main.scss';
 
-type Props = {
-  store: Store
-};
-
-export const App = observer((props: Props) => (
+export const App = observer((props) => (
   <DragDropContext
-    onDragStart={ (result) => {console.log(result);} }
-    onDragEnd={ (result) => {console.log(result);} }
+    onDragEnd={props.store.mainPlan.onDragCourseEnd.bind(props.store.mainPlan)}
   >
     <Term
       store={props.store}

@@ -1,23 +1,23 @@
 // @flow
 
+import { observable } from 'mobx';
 import { TermModel } from './TermModel';
-import { CourseModel } from './CourseModel';
 
 export class YearModel {
-  title: string;
-  terms: Array<TermModel>;
+  @observable title = '';
+  @observable terms = [];
 
   constructor(
-    title: string = '2000',
-    terms: Array<TermModel> = [],
+    title= '2000',
+    terms = [],
   ) {
     this.title = title;
     this.terms = terms;
   }
 
   addTerm(
-    title: string = 'Fall',
-    courses: Array<CourseModel> = [],
+    title = 'Fall',
+    courses = [],
   ) {
     this.terms.push(new TermModel(title, courses));
   }

@@ -3,18 +3,11 @@
 import React from 'react';
 import { observer } from 'mobx-react';
 import { Draggable } from 'react-beautiful-dnd';
-import { CourseModel } from '../stores/models/CourseModel';
-import { ColorModel } from '../stores/models/ColorModel';
 import '../styles/objects.Course.scss';
 import '../styles/utilities.shadow.scss';
 import '../styles/utilities.center.scss';
 
-type Props = {
-  colorScheme: Array<ColorModel>,
-  course: CourseModel,
-};
-
-export const Course = observer( (props: Props) => (
+export const Course = observer( props => (
   <Draggable
     draggableId={props.course.id}
     type="TERM"
