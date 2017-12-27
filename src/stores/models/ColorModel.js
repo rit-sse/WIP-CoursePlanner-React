@@ -1,12 +1,14 @@
 // @flow
 
+import { observable } from 'mobx';
+
 export class ColorModel {
-  dept: string;
-  color: string;
+  @observable dept = '';
+  @observable color = '';
 
   constructor(
-    dept: string = 'DEPT',
-    color: string = 'rgb(12, 148, 0)',
+    dept = 'DEPT',
+    color  = 'rgb(12, 148, 0)',
   ) {
     this.dept = dept;
     this.color = color;

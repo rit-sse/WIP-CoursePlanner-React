@@ -1,30 +1,32 @@
 // @flow
 
+import { action, observable } from 'mobx';
 import { CourseModel } from './CourseModel';
+import { ID } from '../../utils/id';
 
 export class TermModel {
-  title: string;
-  courses: Array<CourseModel>;
+  @observable title = '';
+  @observable id = '';
+  @observable courses = [];
 
   constructor(
-    title: string = 'Fall',
-    courses: Array<CourseModel> = [],
+    title = 'Fall',
   ) {
     this.title = title;
-    this.courses = courses;
+    this.id = ID();
   }
 
-  addCourse(
-    name: string = 'A New Course',
-    dept: string = 'DEPT',
-    num: string = '000',
-    credits: number = 0,
-    prereqs: Array<CourseModel> = [],
+  @action.bound addCourse(
+    name = 'A New Course',
+    dept = 'DEPT',
+    num = '000',
+    credits = 3,
+    prereqs = [],
   ) {
     this.courses.push(new CourseModel(name, dept, num, credits, prereqs));
   }
 
-  removeCourse(course: CourseModel) {
-    this.courses = this.courses.filter(thisCourse =>  JSON.stringify(course) !== JSON.stringify(thisCourse));
+  @action.bound removeCourse(course) {
+    this.courses.remove(course);
   }
 }

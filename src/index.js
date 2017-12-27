@@ -3,7 +3,7 @@ import { render } from 'react-dom';
 import { AppContainer } from 'react-hot-loader';
 import a11y  from 'react-a11y';
 import { Store } from './stores/Store';
-import App from './components/App';
+import { App } from './components/App';
 
 const env = process.env.NODE_ENV;
 const store = new Store();
