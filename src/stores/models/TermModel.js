@@ -1,6 +1,6 @@
 // @flow
 
-import { observable } from 'mobx';
+import { action, observable } from 'mobx';
 import { CourseModel } from './CourseModel';
 import { ID } from '../../utils/id';
 
@@ -11,14 +11,12 @@ export class TermModel {
 
   constructor(
     title = 'Fall',
-    courses = [],
   ) {
     this.title = title;
-    this.courses = courses;
     this.id = ID();
   }
 
-  addCourse(
+  @action.bound addCourse(
     name = 'A New Course',
     dept = 'DEPT',
     num = '000',
@@ -26,5 +24,9 @@ export class TermModel {
     prereqs = [],
   ) {
     this.courses.push(new CourseModel(name, dept, num, credits, prereqs));
+  }
+
+  @action.bound removeCourse(course) {
+    this.courses.remove(course);
   }
 }

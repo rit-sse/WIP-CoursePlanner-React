@@ -1,6 +1,6 @@
 // @flow
 
-import { observable } from 'mobx';
+import { action, observable } from 'mobx';
 import { TermModel } from './TermModel';
 
 export class YearModel {
@@ -15,7 +15,7 @@ export class YearModel {
     this.terms = terms;
   }
 
-  addTerm(
+  @action.bound addTerm(
     title = 'Fall',
     courses = [],
   ) {

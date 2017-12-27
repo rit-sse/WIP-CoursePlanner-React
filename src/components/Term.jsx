@@ -1,44 +1,51 @@
 // @flow
 
 import React from 'react';
-import { observer } from 'mobx-react';
+import { Observer } from 'mobx-react';
 import { Droppable } from 'react-beautiful-dnd';
 import { Course } from './Course';
 import '../styles/objects.Term.scss';
 
-export const Term = observer( props => (
-  <Droppable droppableId={props.term.id} type="TERM">
+export const Term = ({ store, courses, termIndex, yearIndex }) => {
+  const term = store.mainPlan.years[yearIndex].terms[termIndex];
+  return (<Droppable droppableId={term.id} type="TERM">
     {(provided, snapshot) => (
-      <div
-        ref={provided.innerRef}
-        style={{
-          backgroundColor: snapshot.isDraggingOver ? 'lightyellow' : 'white',
-        }}
-        className="term"
-      >
-        <div className="title">
-          {props.term.title}
-        </div>
-        <div className="credits-sum">
-          {props.term.courses.reduce(
-            (acc, thisCourse) => {
-              if (thisCourse) {
-                return acc + thisCourse.credits;
-              } else {
-                return acc;
-              }
-            }, 0)
-          } Credits
-        </div>
-        {props.term.courses.map(
-          course => <Course
-            colorScheme={props.store.mainPlan.colorScheme}
-            course={course}
-            key={course.id}
-          />
+      <Observer>
+        {() => (
+          <div
+            ref={provided.innerRef}
+            style={{
+              backgroundColor: snapshot.isDraggingOver ? 'lightyellow' : 'white',
+            }}
+            className="term"
+          >
+            <div className="title">
+              {term.title}
+            </div>
+            <div className="credits-sum">
+              {courses.reduce(
+                (acc, thisCourse) => {
+                  if (thisCourse) {
+                    return acc + thisCourse.credits;
+                  } else {
+                    return acc;
+                  }
+                }, 0)
+              } Credits
+            </div>
+            {courses.map(
+              course => <Course
+                colorScheme={store.mainPlan.colorScheme}
+                course={course}
+                key={course.id}
+              />
+            )}
+            {provided.placeholder}
+          </div>
         )}
-        {provided.placeholder}
-      </div>
+      </Observer>
     )}
-  </Droppable>
-));
+  </Droppable>);
+};
+
+Term.displayName = 'Term';

@@ -3,16 +3,18 @@
 import React from 'react';
 import { observer } from 'mobx-react';
 import { DragDropContext } from 'react-beautiful-dnd';
-import { Term } from './Term';
+import { Year } from './Year';
 import '../styles/main.scss';
 
-export const App = observer((props) => (
+export const App = observer(({ store }) => (
   <DragDropContext
-    onDragEnd={props.store.mainPlan.onDragCourseEnd.bind(props.store.mainPlan)}
+    onDragEnd={store.mainPlan.onDragCourseEnd}
   >
-    <Term
-      store={props.store}
-      term={props.store.mainPlan.years[0].terms[0]}
+    <Year
+      store={store}
+      yearIndex={0}
     />
   </DragDropContext>
 ));
+
+App.displayName = 'App';
