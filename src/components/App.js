@@ -8,7 +8,7 @@ import '../styles/main.scss';
 
 export const App = observer(({ store }) => (
   <DragDropContext
-    onDragEnd={store.mainPlan.onDragCourseEnd}
+    onDragEnd={store.mainPlan.handleDragDrop.bind(store.mainPlan)}
   >
     {store.mainPlan.years.map(
       (year, yearIndex) =>  <Year

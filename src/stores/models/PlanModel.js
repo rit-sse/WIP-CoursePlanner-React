@@ -5,6 +5,7 @@ import { YearModel } from './YearModel';
 import { ColorModel } from './ColorModel';
 import { CourseLocation } from './CourseLocation';
 import { TermLocation } from './TermLocation';
+import { YearLocation } from './YearLocation';
 
 export class PlanModel {
   @observable title = '';
@@ -63,6 +64,43 @@ export class PlanModel {
       })
     ));
     return term;
+  }
+
+  findYear(yearId) {
+    let year;
+    this.years.forEach((thisYear, yearIndex) => {
+      if (thisYear.id === yearId) {
+        year = new YearLocation(thisYear, yearIndex);
+      }
+    });
+    return year;
+  }
+
+  handleDragDrop(result) {
+    switch(result.type) {
+      case 'YEAR-TERM':
+        this.onDragTermEnd(result);
+        break;
+      case 'TERM-COURSE':
+        this.onDragCourseEnd(result);
+        break;
+      default:
+        // I dunno, cry about it?
+        return;
+    }
+  }
+
+  @action.bound onDragTermEnd(result) {
+    if (!result.destination) {
+      return; // The term was dropped in its current location
+    }
+
+    const targetTerm = this.findTerm(result.draggableId);
+    const targetYear = this.findYear(result.destination.droppableId);
+    const sourceYear = this.findYear(result.source.droppableId);
+
+    sourceYear.yearRef.terms.splice(targetTerm.termIndex, 1);
+    targetYear.yearRef.terms.splice(result.destination.index, 0, targetTerm.termRef);
   }
 
   @action.bound onDragCourseEnd(result) {
