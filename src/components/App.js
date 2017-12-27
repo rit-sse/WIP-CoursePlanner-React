@@ -6,7 +6,7 @@ import { Plan } from './Plan';
 import '../styles/main.scss';
 
 export const App = observer(({ store }) => (
-  <Plan store={store} />
+  <Plan plan={store.mainPlan} />
 ));
 
 App.displayName = 'App';

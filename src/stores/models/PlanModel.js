@@ -78,6 +78,9 @@ export class PlanModel {
 
   handleDragDrop(result) {
     switch(result.type) {
+      case 'PLAN-YEAR':
+        this.onDragYearEnd(result);
+        break;
       case 'YEAR-TERM':
         this.onDragTermEnd(result);
         break;
@@ -88,6 +91,19 @@ export class PlanModel {
         // I dunno, cry about it?
         return;
     }
+  }
+
+  @action.bound onDragYearEnd(result) {
+    if (!result.destination) {
+      return; // The year was dropped in its current location
+    }
+
+    const targetYear = this.findYear(result.draggableId);
+    const targetPlan = this;
+    const sourcePlan = this;
+
+    sourcePlan.years.splice(targetYear.yearIndex, 1);
+    targetPlan.years.splice(result.destination.index, 0, targetYear.yearRef);
   }
 
   @action.bound onDragTermEnd(result) {

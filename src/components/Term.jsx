@@ -6,8 +6,7 @@ import { Draggable, Droppable } from 'react-beautiful-dnd';
 import { Course } from './Course';
 import '../styles/objects.Term.scss';
 
-export const Term = ({ store, courses, termIndex, yearIndex }) => {
-  const term = store.mainPlan.years[yearIndex].terms[termIndex];
+export const Term = ({ term, colorScheme }) => {
   return (
     <div className="term">
       <Draggable
@@ -44,7 +43,7 @@ export const Term = ({ store, courses, termIndex, yearIndex }) => {
                         {term.title}
                       </div>
                       <div className="credits-sum">
-                        {courses.reduce(
+                        {term.courses.reduce(
                           (acc, thisCourse) => {
                             if (thisCourse) {
                               return acc + thisCourse.credits;
@@ -54,9 +53,9 @@ export const Term = ({ store, courses, termIndex, yearIndex }) => {
                           }, 0)
                         } Credits
                       </div>
-                      {courses.map(
+                      {term.courses.map(
                         course => <Course
-                          colorScheme={store.mainPlan.colorScheme}
+                          colorScheme={colorScheme}
                           course={course}
                           key={course.id}
                         />
