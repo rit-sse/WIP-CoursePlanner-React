@@ -10,7 +10,7 @@ import '../styles/utilities.center.scss';
 export const Course = observer( ({colorScheme, course}) => (
   <Draggable
     draggableId={course.id}
-    type="TERM"
+    type="TERM-COURSE"
   >
     {(provided, snapshot) => (
       <div>

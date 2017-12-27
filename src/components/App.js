@@ -10,10 +10,13 @@ export const App = observer(({ store }) => (
   <DragDropContext
     onDragEnd={store.mainPlan.onDragCourseEnd}
   >
-    <Year
-      store={store}
-      yearIndex={0}
-    />
+    {store.mainPlan.years.map(
+      (year, yearIndex) =>  <Year
+        key={year.id}
+        store={store}
+        yearIndex={yearIndex}
+      />
+    )}
   </DragDropContext>
 ));
 

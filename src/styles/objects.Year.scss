@@ -2,4 +2,14 @@
 
 .year {
   float: left;
+  text-align: center;
+  border-style: solid;
+  border-color: lightgray;
+  border-width: 4px;
+  margin-right: 10px;
+  padding-bottom: $term-box-spacing;
+
+  .title {
+    margin-bottom: 10px;
+  }
 }

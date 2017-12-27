@@ -1,24 +1,30 @@
 // @flow
 
 import React from 'react';
-import { observer } from 'mobx-react';
+import { Observer } from 'mobx-react';
+import { Droppable } from 'react-beautiful-dnd';
+import { Card, Button, CardHeader, CardFooter, CardBody, CardTitle, CardText } from 'reactstrap';
 import { Term } from './Term';
 import '../styles/objects.Year.scss';
 
-export const Year = observer( ({ store, yearIndex, termIndex }) => {
+export const Year = ({ store, yearIndex, termIndex }) => {
   const year = store.mainPlan.years[yearIndex];
-  return (<div className="year">
-    <div className="title">{year.title}</div>
-    {year.terms.map(
-      (term, termIndex) => <Term
-        key={term.id}
-        courses={term.courses}
-        termIndex={termIndex}
-        yearIndex={yearIndex}
-        store={store}
-      />
-    )}
-  </div>);
-});
+  return (
+    <Card className="year">
+      <CardHeader className="title">{year.title}</CardHeader>
+      <CardBody>
+        {year.terms.map(
+          (term, termIndex) => <Term
+            key={term.id}
+            courses={term.courses}
+            termIndex={termIndex}
+            yearIndex={yearIndex}
+            store={store}
+          />
+        )}
+      </CardBody>
+    </Card>
+  );
+};
 
 Year.displayName = 'Year';
