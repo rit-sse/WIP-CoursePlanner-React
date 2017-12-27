@@ -9,67 +9,69 @@ import '../styles/objects.Term.scss';
 export const Term = ({ store, courses, termIndex, yearIndex }) => {
   const term = store.mainPlan.years[yearIndex].terms[termIndex];
   return (
-    <Draggable
-      draggableId={term.id}
-      type="YEAR-TERM"
-    >
-      {(draggableProvided, draggableSnapshot) => (
-        <div
-          {...draggableProvided.dragHandleProps}
-          className="term"
-          ref={draggableProvided.innerRef}
-          style={{
-            ...draggableProvided.draggableStyle,
-            opacity: draggableSnapshot.isDragging ? '.5' : '1',
-          }}
-        >
-          <Droppable
-            droppableId={term.id}
-            type="TERM-COURSE"
+    <div className="term">
+      <Draggable
+        draggableId={term.id}
+        type="YEAR-TERM"
+      >
+        {(draggableProvided, draggableSnapshot) => (
+          <div
+            {...draggableProvided.dragHandleProps}
+            className="term-box"
+            ref={draggableProvided.innerRef}
+            style={{
+              ...draggableProvided.draggableStyle,
+              opacity: draggableSnapshot.isDragging ? '.5' : '1',
+            }}
           >
-            {(droppableProvided, droppableSnapshot) => (
-              <Observer>
-                {() => (
-                  <div
-                    className="TERM-COURSE-DROPPABLE"
-                    ref={droppableProvided.innerRef}
-                    style={{
-                      backgroundColor: droppableSnapshot.isDraggingOver ? 'lightyellow' : 'white',
-                    }}
-                  >
+            <Droppable
+              droppableId={term.id}
+              type="TERM-COURSE"
+            >
+              {(droppableProvided, droppableSnapshot) => (
+                <Observer>
+                  {() => (
                     <div
-                      className="title"
+                      className="TERM-COURSE-DROPPABLE"
+                      ref={droppableProvided.innerRef}
+                      style={{
+                        backgroundColor: droppableSnapshot.isDraggingOver ? 'lightyellow' : 'white',
+                      }}
                     >
-                      {term.title}
+                      <div
+                        className="title"
+                      >
+                        {term.title}
+                      </div>
+                      <div className="credits-sum">
+                        {courses.reduce(
+                          (acc, thisCourse) => {
+                            if (thisCourse) {
+                              return acc + thisCourse.credits;
+                            } else {
+                              return acc;
+                            }
+                          }, 0)
+                        } Credits
+                      </div>
+                      {courses.map(
+                        course => <Course
+                          colorScheme={store.mainPlan.colorScheme}
+                          course={course}
+                          key={course.id}
+                        />
+                      )}
+                      {droppableProvided.placeholder}
                     </div>
-                    <div className="credits-sum">
-                      {courses.reduce(
-                        (acc, thisCourse) => {
-                          if (thisCourse) {
-                            return acc + thisCourse.credits;
-                          } else {
-                            return acc;
-                          }
-                        }, 0)
-                      } Credits
-                    </div>
-                    {courses.map(
-                      course => <Course
-                        colorScheme={store.mainPlan.colorScheme}
-                        course={course}
-                        key={course.id}
-                      />
-                    )}
-                    {droppableProvided.placeholder}
-                  </div>
-                )}
-              </Observer>
-            )}
-          </Droppable>
-          {draggableProvided.placeholder}
-        </div>
-      )}
-    </Draggable>
+                  )}
+                </Observer>
+              )}
+            </Droppable>
+            {draggableProvided.placeholder}
+          </div>
+        )}
+      </Draggable>
+    </div>
   );
 };
 

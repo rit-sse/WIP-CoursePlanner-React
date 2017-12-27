@@ -3,12 +3,15 @@
 
 .term {
   float: left;
-  margin-right: $term-box-spacing;
   text-align: center;
   width: $term-box-width;
   padding-bottom: $term-box-spacing;
-  border: 1.5px solid rgba(0, 0, 0, 0.125);
-  border-radius: 0.25rem;
+
+  .term-box {
+    border: 1.5px solid rgba(0, 0, 0, 0.125);
+    border-radius: 0.25rem;
+    margin-right: $term-box-spacing;
+  }
 
   .credits-sum {
     font-size: $term-credits-font-size;
