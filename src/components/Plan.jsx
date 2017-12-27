@@ -16,16 +16,18 @@ export const Plan = ({ plan }) => {
           <Observer>
             {() => (
               <div
-                className="plan PLAN-YEAR-DROPPABLE"
+                className="PLAN-YEAR-DROPPABLE"
                 ref={provided.innerRef}
               >
-                {plan.years.map((year) =>
-                  <Year
-                    key={year.id}
-                    year={year}
-                    colorScheme={plan.colorScheme}
-                  />
-                )}
+                <div className="plan">
+                  {plan.years.map((year) =>
+                    <Year
+                      key={year.id}
+                      year={year}
+                      colorScheme={plan.colorScheme}
+                    />
+                  )}
+                </div>
               </div>
             )}
           </Observer>

@@ -2,11 +2,11 @@
 
 import React from 'react';
 import { observer } from 'mobx-react';
-import { Plan } from './Plan';
+import { Workspace } from './Workspace';
 import '../styles/main.scss';
 
 export const App = observer(({ store }) => (
-  <Plan plan={store.mainPlan} />
+  <Workspace store={store} />
 ));
 
 App.displayName = 'App';
