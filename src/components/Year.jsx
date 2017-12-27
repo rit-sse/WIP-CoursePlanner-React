@@ -3,7 +3,7 @@
 import React from 'react';
 import { Observer } from 'mobx-react';
 import { Droppable } from 'react-beautiful-dnd';
-import { Card, Button, CardHeader, CardFooter, CardBody, CardTitle, CardText } from 'reactstrap';
+import { Card, CardHeader, CardBody } from 'reactstrap';
 import { Term } from './Term';
 import '../styles/objects.Year.scss';
 
@@ -23,16 +23,16 @@ export const Year = ({ store, yearIndex, termIndex }) => {
                   backgroundColor: snapshot.isDraggingOver ? 'lightyellow' : 'white',
                 }}
               >
-                <CardBody>
+                <CardBody className="term-wrapper">
                   {year.terms.map(
                     (term, termIndex) =>
-                    <Term
-                      key={term.id}
-                      courses={term.courses}
-                      termIndex={termIndex}
-                      yearIndex={yearIndex}
-                      store={store}
-                    />
+                      <Term
+                        key={term.id}
+                        courses={term.courses}
+                        termIndex={termIndex}
+                        yearIndex={yearIndex}
+                        store={store}
+                      />
                   )}
                   {provided.placeholder}
                 </CardBody>

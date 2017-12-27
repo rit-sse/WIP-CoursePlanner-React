@@ -1,15 +1,24 @@
 @import 'settings.constants.scss';
 
 .year {
-  float: left;
   text-align: center;
   border-style: solid;
   border-color: lightgray;
   border-width: 4px;
   margin-right: 10px;
   padding-bottom: $term-box-spacing;
+  min-height: $year-box-height;
 
   .title {
     margin-bottom: 10px;
+  }
+
+  .YEAR-TERM-DROPPABLE {
+    flex: 1;
+  }
+
+  .term-wrapper {
+    display: flex;
+    flex-flow: row;
   }
 }
