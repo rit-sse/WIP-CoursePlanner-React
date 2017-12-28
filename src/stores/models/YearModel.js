@@ -1,13 +1,21 @@
-// @flow
-
 import { action, observable } from 'mobx';
+import { serializable, identifier, list, object } from 'serializr';
 import { TermModel } from './TermModel';
 import { ID } from '../../utils/id';
 
 export class YearModel {
-  @observable title = '';
-  @observable terms = [];
-  @observable id = '';
+
+  @observable
+  @serializable
+  title = '';
+
+  @observable
+  @serializable(list(object(TermModel)))
+  terms = [];
+
+  @observable
+  @serializable(identifier())
+  id = '';
 
   constructor(
     title= '2000',

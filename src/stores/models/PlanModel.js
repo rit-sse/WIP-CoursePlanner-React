@@ -1,17 +1,32 @@
-// @flow
-
 import { action, observable } from 'mobx';
 import { YearModel } from './YearModel';
 import { ColorModel } from './ColorModel';
 import { CourseLocation } from './CourseLocation';
 import { TermLocation } from './TermLocation';
 import { YearLocation } from './YearLocation';
+import { serializable, identifier, list, object } from 'serializr';
+import { ID } from '../../utils/id';
 
 export class PlanModel {
-  @observable title = '';
-  @observable isPublic = false;
-  @observable colorScheme = [];
-  @observable years = [];
+  @observable
+  @serializable
+  title = '';
+
+  @observable
+  @serializable
+  isPublic = false;
+
+  @observable
+  @serializable(list(object(ColorModel)))
+  colorScheme = [];
+
+  @observable
+  @serializable(list(object(YearModel)))
+  years = [];
+
+  @observable
+  @serializable(identifier())
+  id;
 
   constructor(
     title = 'My New Course Plan',
@@ -24,6 +39,7 @@ export class PlanModel {
     this.years = years;
     this.colorScheme = colorScheme;
     this.colorScheme.push(new ColorModel());
+    this.id = ID();
   }
 
   @action.bound addYear(

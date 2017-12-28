@@ -1,11 +1,25 @@
-// @flow
-
 import { observable } from 'mobx';
+import { serializable, identifier, reference } from 'serializr';
+import { ID } from '../../utils/id';
+import { TermModel } from './TermModel';
 
 export class TermLocation {
-  @observable termRef;
-  @observable yearIndex = -1;
-  @observable termIndex = -1;
+
+  @observable
+  @serializable(reference(TermModel))
+  termRef;
+
+  @observable
+  @serializable
+  yearIndex = -1;
+
+  @observable
+  @serializable
+  termIndex = -1;
+
+  @observable
+  @serializable(identifier())
+  id;
 
   constructor(
     termRef,
@@ -15,5 +29,6 @@ export class TermLocation {
     this.termRef = termRef;
     this.yearIndex = yearIndex;
     this.termIndex = termIndex;
+    this.id = ID();
   }
 }

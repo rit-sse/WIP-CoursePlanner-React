@@ -1,13 +1,21 @@
-// @flow
-
 import { action, observable } from 'mobx';
+import { serializable, identifier, list, object } from 'serializr';
 import { CourseModel } from './CourseModel';
 import { ID } from '../../utils/id';
 
 export class TermModel {
-  @observable title = '';
-  @observable id = '';
-  @observable courses = [];
+
+  @observable
+  @serializable
+  title = '';
+
+  @observable
+  @serializable(identifier())
+  id = '';
+
+  @observable
+  @serializable(list(object(CourseModel)))
+  courses = [];
 
   constructor(
     title = 'Fall',
@@ -28,6 +36,7 @@ export class TermModel {
     prereqs = [],
   ) {
     this.courses.push(new CourseModel(name, dept, num, credits, prereqs));
+    this.id = ID();
   }
 
   @action.bound removeCourse(course) {

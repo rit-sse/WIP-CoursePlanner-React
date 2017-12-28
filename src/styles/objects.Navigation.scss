@@ -1,0 +1,28 @@
+.top-level-nav {
+	margin-bottom: 34px;
+
+	.dropzone {
+		margin: 0 8px;
+		text-align: center;
+		border-width: 2px;
+		border-color: rgb(102, 102, 102);
+		border-style: dashed;
+		border-radius: 5px;
+		padding: 4px;
+	}
+
+  .activeDropzone {
+    border-style: solid;
+    border-color: #6c6;
+    background-color: #eee;
+  }
+
+  span {
+    margin-left: 4px;
+  }
+
+  .dropdown-toggle {
+    width: 200px;
+  }
+}
+
