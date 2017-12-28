@@ -23,7 +23,6 @@
   "author": "Wade Mauger",
   "dependencies": {
     "aphrodite": "^0.3.1",
-    "babel-register": "^6.8.0",
     "bootstrap": "^4.0.0-beta.2",
     "css-loader": "^0.24.0",
     "empty": "^0.10.1",
@@ -79,6 +78,7 @@
     "react-addons-test-utils": "^15.0.2",
     "react-hot-loader": "^3.0.0-beta.1",
     "redbox-react": "^1.2.3",
+    "riek": "^1.1.0",
     "sass-loader": "^6.0.6",
     "webpack": "^1.15.0",
     "webpack-dev-server": "^1.14.1",
