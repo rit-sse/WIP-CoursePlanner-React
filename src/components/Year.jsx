@@ -21,6 +21,7 @@ export const Year = ({ year, colorScheme }) => {
             ref={draggableProvided.innerRef}
             style={{
               ...draggableProvided.draggableStyle,
+              cursor: draggableSnapshot.isDragging ? 'grabbing' : 'default',
               opacity: draggableSnapshot.isDragging ? '.5' : '1',
             }}
           >

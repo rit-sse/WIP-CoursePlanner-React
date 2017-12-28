@@ -23,6 +23,7 @@ export const Course = observer( ({colorScheme, course}) => (
               thisColor => thisColor.dept === course.dept
             ).color,
             opacity: snapshot.isDragging ? '.5' : '1',
+            cursor: snapshot.isDragging ? 'grabbing' : 'default',
             ...provided.draggableStyle,
           }}
         >

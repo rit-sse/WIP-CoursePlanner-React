@@ -21,6 +21,7 @@ export const Term = ({ term, colorScheme }) => {
             style={{
               ...draggableProvided.draggableStyle,
               opacity: draggableSnapshot.isDragging ? '.5' : '1',
+              cursor: draggableSnapshot.isDragging ? 'grabbing' : 'default',
             }}
           >
             <Droppable
