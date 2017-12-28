@@ -27,6 +27,7 @@ export const Plan = ({ plan }) => {
                       colorScheme={plan.colorScheme}
                     />
                   )}
+                  {provided.placeholder}
                 </div>
               </div>
             )}

@@ -31,6 +31,30 @@ export class Store {
     this.mainPlan.years[1].terms[1].addCourse('Computer Science Two', 'CSCI', '142', 4);
     this.mainPlan.years[1].terms[1].addCourse('Project Based Calculus Two', 'MATH', '142', 4);
 
+    this.mainPlan.addYear('Third Year');
+    this.mainPlan.years[2].addTerm();
+    this.mainPlan.years[2].addTerm('Spring');
+
+    this.mainPlan.years[2].terms[0].addCourse('Software Engineering Seminar', 'SWEN', '101', 1);
+    this.mainPlan.years[2].terms[0].addCourse('Computer Science One', 'CSCI', '141', 4);
+    this.mainPlan.years[2].terms[0].addCourse('Project Based Calculus One', 'MATH', '141', 4);
+
+    this.mainPlan.years[2].terms[1].addCourse('Intro to SE', 'SWEN', '261', 3);
+    this.mainPlan.years[2].terms[1].addCourse('Computer Science Two', 'CSCI', '142', 4);
+    this.mainPlan.years[2].terms[1].addCourse('Project Based Calculus Two', 'MATH', '142', 4);
+
+    this.mainPlan.addYear('Fourth Year');
+    this.mainPlan.years[3].addTerm();
+    this.mainPlan.years[3].addTerm('Spring');
+
+    this.mainPlan.years[3].terms[0].addCourse('Software Engineering Seminar', 'SWEN', '101', 1);
+    this.mainPlan.years[3].terms[0].addCourse('Computer Science One', 'CSCI', '141', 4);
+    this.mainPlan.years[3].terms[0].addCourse('Project Based Calculus One', 'MATH', '141', 4);
+
+    this.mainPlan.years[3].terms[1].addCourse('Intro to SE', 'SWEN', '261', 3);
+    this.mainPlan.years[3].terms[1].addCourse('Computer Science Two', 'CSCI', '142', 4);
+    this.mainPlan.years[3].terms[1].addCourse('Project Based Calculus Two', 'MATH', '142', 4);
+
     this.mainPlan.addColor('SWEN', 'blue');
     this.mainPlan.addColor('CSCI', 'green');
     this.mainPlan.addColor('MATH', 'red');

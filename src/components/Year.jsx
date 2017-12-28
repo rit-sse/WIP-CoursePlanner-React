@@ -14,50 +14,52 @@ export const Year = ({ year, colorScheme }) => {
       type="PLAN-YEAR"
     >
       {(draggableProvided, draggableSnapshot) => (
-        <div
-          {...draggableProvided.dragHandleProps}
-          className="year-box"
-          ref={draggableProvided.innerRef}
-          style={{
-            ...draggableProvided.draggableStyle,
-            opacity: draggableSnapshot.isDragging ? '.5' : '1',
-          }}
-        >
-          <Droppable droppableId={year.id} type="YEAR-TERM" direction="horizontal">
-            {(provided, snapshot) => (
-              <Observer>
-                {() => (
-                  <Card className="year">
-                    <CardHeader className="title">{year.title}</CardHeader>
-                    <div
-                      className="YEAR-TERM-DROPPABLE"
-                      ref={provided.innerRef}
-                      style={{
-                      backgroundColor: snapshot.isDraggingOver ? 'lightyellow' : 'white',
-                      }}
-                    >
-                      <CardBody className="term-wrapper">
-                        {year.terms.map(
-                        (term) =>
-                          <Term
-                            key={term.id}
-                            courses={term.courses}
-                            term={term}
-                            colorScheme={colorScheme}
-                          />
-                        )}
-                        {provided.placeholder}
-                      </CardBody>
-                    </div>
-                  </Card>
-                )}
-              </Observer>
-            )}
-          </Droppable>
+        <div>
+          <div
+            {...draggableProvided.dragHandleProps}
+            className="year-box"
+            ref={draggableProvided.innerRef}
+            style={{
+              ...draggableProvided.draggableStyle,
+              opacity: draggableSnapshot.isDragging ? '.5' : '1',
+            }}
+          >
+            <Droppable droppableId={year.id} type="YEAR-TERM" direction="horizontal">
+              {(droppableProvided, snapshot) => (
+                <Observer>
+                  {() => (
+                    <Card className="year">
+                      <CardHeader className="title">{year.title}</CardHeader>
+                      <div
+                        className="YEAR-TERM-DROPPABLE"
+                        ref={droppableProvided.innerRef}
+                        style={{
+                          backgroundColor: snapshot.isDraggingOver ? 'lightyellow' : 'white',
+                        }}
+                      >
+                        <CardBody className="term-wrapper">
+                          {year.terms.map((term) =>
+                            <Term
+                              key={term.id}
+                              courses={term.courses}
+                              term={term}
+                              colorScheme={colorScheme}
+                            />
+                          )}
+                          {droppableProvided.placeholder}
+                        </CardBody>
+                      </div>
+                    </Card>
+                  )}
+                </Observer>
+              )}
+            </Droppable>
+          </div>
+          {draggableProvided.placeholder}
         </div>
       )}
     </Draggable>
-    );
+  );
 };
 
 Year.displayName = 'Year';
