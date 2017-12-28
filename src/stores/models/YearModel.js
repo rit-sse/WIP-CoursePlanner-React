@@ -18,6 +18,10 @@ export class YearModel {
     this.id = ID();
   }
 
+  @action.bound setTitle(newTitle) {
+    this.title = newTitle.title;
+  }
+
   @action.bound addTerm(
     title = 'Fall',
     courses = [],

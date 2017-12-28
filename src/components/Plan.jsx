@@ -3,7 +3,9 @@
 import React from 'react';
 import { Observer } from 'mobx-react';
 import { DragDropContext, Droppable } from 'react-beautiful-dnd';
+import { Button } from 'reactstrap';
 import { Year } from './Year';
+import { Trash } from './Trash';
 import '../styles/objects.Plan.scss';
 
 export const Plan = ({ plan }) => {
@@ -28,7 +30,12 @@ export const Plan = ({ plan }) => {
                     />
                   )}
                   {provided.placeholder}
+                  <Button
+                    color="link"
+                    onClick={() => plan.addYear()}
+                  >+</Button>
                 </div>
+                <Trash />
               </div>
             )}
           </Observer>

@@ -3,8 +3,10 @@
 import React from 'react';
 import { Observer } from 'mobx-react';
 import { Draggable, Droppable } from 'react-beautiful-dnd';
-import { Card, CardHeader, CardBody } from 'reactstrap';
+import { Button, Card, CardHeader, CardBody } from 'reactstrap';
 import { Term } from './Term';
+import { RIEInput } from 'riek';
+import _ from 'lodash';
 import '../styles/objects.Year.scss';
 
 export const Year = ({ year, colorScheme }) => {
@@ -30,7 +32,18 @@ export const Year = ({ year, colorScheme }) => {
                 <Observer>
                   {() => (
                     <Card className="year">
-                      <CardHeader className="title">{year.title}</CardHeader>
+                      <CardHeader className="title">
+                        <RIEInput
+                          value={year.title}
+                          change={year.setTitle}
+                          propName="title"
+                          validate={_.isString}
+                        />
+                        <Button
+                          color="link"
+                          onClick={() => year.addTerm()}
+                        >+</Button>
+                      </CardHeader>
                       <div
                         className="YEAR-TERM-DROPPABLE"
                         ref={droppableProvided.innerRef}

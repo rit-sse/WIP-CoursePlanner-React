@@ -4,6 +4,9 @@ import React from 'react';
 import { Observer } from 'mobx-react';
 import { Draggable, Droppable } from 'react-beautiful-dnd';
 import { Course } from './Course';
+import { Button } from 'reactstrap';
+import { RIEInput } from 'riek';
+import _ from 'lodash';
 import '../styles/objects.Term.scss';
 
 export const Term = ({ term, colorScheme }) => {
@@ -41,7 +44,13 @@ export const Term = ({ term, colorScheme }) => {
                       <div
                         className="title"
                       >
-                        {term.title}
+                        <RIEInput
+                          value={term.title}
+                          change={term.setTitle}
+                          propName="title"
+                          classEditing="term-title-editing-box"
+                          validate={_.isString}
+                        />
                       </div>
                       <div className="credits-sum">
                         {term.courses.reduce(
@@ -62,6 +71,10 @@ export const Term = ({ term, colorScheme }) => {
                         />
                       )}
                       {droppableProvided.placeholder}
+                      <Button
+                        color="link"
+                        onClick={() => term.addCourse()}
+                      >+</Button>
                     </div>
                   )}
                 </Observer>

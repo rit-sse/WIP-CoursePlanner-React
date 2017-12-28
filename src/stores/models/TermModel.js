@@ -16,10 +16,14 @@ export class TermModel {
     this.id = ID();
   }
 
+  @action.bound setTitle(newTitle) {
+    this.title = newTitle.title;
+  }
+
   @action.bound addCourse(
     name = 'A New Course',
     dept = 'DEPT',
-    num = '000',
+    num = '101',
     credits = 3,
     prereqs = [],
   ) {

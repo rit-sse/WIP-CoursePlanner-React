@@ -125,8 +125,14 @@ export class PlanModel {
     }
 
     const targetCourse = this.findCourse(result.draggableId);
-    const targetTerm = this.findTerm(result.destination.droppableId);
     const sourceTerm = this.findTerm(result.source.droppableId);
+
+    if (result.destination.droppableId === 'TRASH') {
+      sourceTerm.termRef.removeCourse(targetCourse.courseRef);
+      return;
+    }
+
+    const targetTerm = this.findTerm(result.destination.droppableId);
 
     sourceTerm.termRef.courses.splice(targetCourse.courseIndex, 1);
     targetTerm.termRef.courses.splice(result.destination.index, 0, targetCourse.courseRef);

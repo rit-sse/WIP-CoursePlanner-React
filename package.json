@@ -27,11 +27,13 @@
     "css-loader": "^0.24.0",
     "empty": "^0.10.1",
     "http-server": "^0.9.0",
+    "lodash": "^4.17.4",
     "mobx": "^3.4.0",
     "mobx-react": "^4.3.5",
     "react": "^16.2.0",
     "react-beautiful-dnd": "^3.0.0",
     "react-dom": "^16.2.0",
+    "react-icons": "^2.2.7",
     "reactstrap": "^5.0.0-alpha.4",
     "resolve-url-loader": "^1.6.0",
     "style-loader": "^0.13.1"
