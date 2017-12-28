@@ -11,8 +11,8 @@
     "typecheck": "flow check src",
     "lint": "eslint ./src",
     "build": "npm run lint && npm run test && webpack --progress -p",
-    "start": "NODE_ENV=prod npm run build && http-server",
-    "devServer": "NODE_ENV=dev node server.js"
+    "startProd": "NODE_ENV=prod npm run build && http-server",
+    "start": "NODE_ENV=dev node server.js"
   },
   "keywords": [
     "React",
