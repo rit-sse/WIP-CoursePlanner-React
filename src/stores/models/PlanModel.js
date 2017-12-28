@@ -99,11 +99,13 @@ export class PlanModel {
     }
 
     const targetYear = this.findYear(result.draggableId);
-    const targetPlan = this;
+    const targetPlan = result.destination.droppableId === 'TRASH' ? null : this;
     const sourcePlan = this;
 
     sourcePlan.years.splice(targetYear.yearIndex, 1);
-    targetPlan.years.splice(result.destination.index, 0, targetYear.yearRef);
+    if(targetPlan) {
+      targetPlan.years.splice(result.destination.index, 0, targetYear.yearRef);
+    }
   }
 
   @action.bound onDragTermEnd(result) {
