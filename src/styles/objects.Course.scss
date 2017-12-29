@@ -8,16 +8,6 @@
   height: $course-box-height;
   color: $course-box-font-color;
   margin-bottom: 10px;
-  cursor: move; /* fallback if grab cursor is unsupported */
-  cursor: grab;
-  cursor: -moz-grab;
-  cursor: -webkit-grab;
-
-  :active {
-    cursor: grabbing;
-    cursor: -moz-grabbing;
-    cursor: -webkit-grabbing;
-  }
 
   .wrapper {
     display: flex;

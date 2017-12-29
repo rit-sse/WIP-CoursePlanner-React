@@ -15,7 +15,7 @@ import '../styles/objects.Navigation.scss';
 
 export const Navigation = observer(({ store }) => (
   <div className="top-level-nav">
-    <Navbar color="light" expand="sm">
+    <Navbar color="light" expand="sm" className="navbar-dark bg-dark">
       <NavbarBrand href="/">Plan Your Courses</NavbarBrand>
       <Collapse isOpen navbar>
         <Nav className="ml-auto" navbar>

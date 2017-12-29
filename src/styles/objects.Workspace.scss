@@ -1,4 +1,13 @@
+@import 'settings.colors.scss';
+
 .workspace {
-    display: flex;
-    flex-flow: row;
+  display: flex;
+  flex-flow: row;
+  justify-content: center;
+
+  .trash {
+    position: fixed;
+    bottom: 20px;
+    right: 0;
+  }
 }

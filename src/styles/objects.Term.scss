@@ -4,12 +4,11 @@
 .term {
   text-align: center;
   width: $term-box-width;
-  padding-bottom: $term-box-spacing;
 
   .term-box {
     border: 1.5px solid rgba(0, 0, 0, 0.125);
     border-radius: 0.25rem;
-    margin-right: $term-box-spacing;
+    margin: 0 $term-box-spacing;
   }
 
   .credits-sum {

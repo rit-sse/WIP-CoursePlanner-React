@@ -6,6 +6,7 @@ import { DragDropContext } from 'react-beautiful-dnd';
 import { Plan } from './Plan';
 import { Trash } from './Trash';
 import '../styles/objects.Workspace.scss';
+import '../styles/utilities.grab.scss';
 
 export const Workspace = observer(({ store }) => (
   <div className="workspace">

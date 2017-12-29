@@ -17,13 +17,12 @@ export const Course = observer( ({colorScheme, course}) => (
         <li
           {...provided.dragHandleProps}
           ref={provided.innerRef}
-          className="course shadow center"
+          className="course shadow center draggable"
           style={{
             backgroundColor: colorScheme.find(
               thisColor => thisColor.dept === course.dept
             ).color,
             opacity: snapshot.isDragging ? '.5' : '1',
-            cursor: snapshot.isDragging ? 'grabbing' : 'default',
             ...provided.draggableStyle,
           }}
         >

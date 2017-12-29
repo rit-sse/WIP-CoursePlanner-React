@@ -134,7 +134,9 @@ export class PlanModel {
     const sourceYear = this.findYear(result.source.droppableId);
 
     sourceYear.yearRef.terms.splice(targetTerm.termIndex, 1);
-    targetYear.yearRef.terms.splice(result.destination.index, 0, targetTerm.termRef);
+    if(targetYear) {
+      targetYear.yearRef.terms.splice(result.destination.index, 0, targetTerm.termRef);
+    }
   }
 
   @action.bound onDragCourseEnd(result) {
@@ -153,6 +155,8 @@ export class PlanModel {
     const targetTerm = this.findTerm(result.destination.droppableId);
 
     sourceTerm.termRef.courses.splice(targetCourse.courseIndex, 1);
-    targetTerm.termRef.courses.splice(result.destination.index, 0, targetCourse.courseRef);
+    if(targetTerm) {
+      targetTerm.termRef.courses.splice(result.destination.index, 0, targetCourse.courseRef);
+    }
   }
 }
