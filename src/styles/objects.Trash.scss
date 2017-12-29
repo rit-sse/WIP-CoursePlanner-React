@@ -1,0 +1,13 @@
+@import 'settings.constants.scss';
+@import 'settings.colors.scss';
+
+.trash {
+
+  .TRASH-DROPPABLE {
+    width: $term-box-width;
+    height: 100%;
+    display: flex;
+    align-items: center;
+  }
+
+}

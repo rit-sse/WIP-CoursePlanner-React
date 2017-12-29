@@ -2,50 +2,90 @@
 
 import React from 'react';
 import { Observer } from 'mobx-react';
-import { Droppable } from 'react-beautiful-dnd';
+import { Draggable, Droppable } from 'react-beautiful-dnd';
 import { Course } from './Course';
+import { Button } from 'reactstrap';
+import { RIEInput } from 'riek';
+import _ from 'lodash';
 import '../styles/objects.Term.scss';
 
-export const Term = ({ store, courses, termIndex, yearIndex }) => {
-  const term = store.mainPlan.years[yearIndex].terms[termIndex];
-  return (<Droppable droppableId={term.id} type="TERM">
-    {(provided, snapshot) => (
-      <Observer>
-        {() => (
+export const Term = ({ term, colorScheme }) => {
+  return (
+    <div className="term">
+      <Draggable
+        draggableId={term.id}
+        type="YEAR-TERM"
+      >
+        {(draggableProvided, draggableSnapshot) => (
           <div
-            ref={provided.innerRef}
+            {...draggableProvided.dragHandleProps}
+            className="term-box"
+            ref={draggableProvided.innerRef}
             style={{
-              backgroundColor: snapshot.isDraggingOver ? 'lightyellow' : 'white',
+              ...draggableProvided.draggableStyle,
+              opacity: draggableSnapshot.isDragging ? '.5' : '1',
+              cursor: draggableSnapshot.isDragging ? 'grabbing' : 'default',
             }}
-            className="term"
           >
-            <div className="title">
-              {term.title}
-            </div>
-            <div className="credits-sum">
-              {courses.reduce(
-                (acc, thisCourse) => {
-                  if (thisCourse) {
-                    return acc + thisCourse.credits;
-                  } else {
-                    return acc;
-                  }
-                }, 0)
-              } Credits
-            </div>
-            {courses.map(
-              course => <Course
-                colorScheme={store.mainPlan.colorScheme}
-                course={course}
-                key={course.id}
-              />
-            )}
-            {provided.placeholder}
+            <Droppable
+              droppableId={term.id}
+              type="TERM-COURSE"
+            >
+              {(droppableProvided, droppableSnapshot) => (
+                <Observer>
+                  {() => (
+                    <div
+                      className="TERM-COURSE-DROPPABLE"
+                      ref={droppableProvided.innerRef}
+                      style={{
+                        backgroundColor: droppableSnapshot.isDraggingOver ? 'lightyellow' : 'white',
+                      }}
+                    >
+                      <div
+                        className="title"
+                      >
+                        <RIEInput
+                          value={term.title}
+                          change={term.setTitle}
+                          propName="title"
+                          classEditing="term-title-editing-box"
+                          validate={_.isString}
+                        />
+                      </div>
+                      <div className="credits-sum">
+                        {term.courses.reduce(
+                          (acc, thisCourse) => {
+                            if (thisCourse) {
+                              return acc + thisCourse.credits;
+                            } else {
+                              return acc;
+                            }
+                          }, 0)
+                        } Credits
+                      </div>
+                      {term.courses.map(
+                        course => <Course
+                          colorScheme={colorScheme}
+                          course={course}
+                          key={course.id}
+                        />
+                      )}
+                      {droppableProvided.placeholder}
+                      <Button
+                        color="link"
+                        onClick={() => term.addCourse()}
+                      >+</Button>
+                    </div>
+                  )}
+                </Observer>
+              )}
+            </Droppable>
+            {draggableProvided.placeholder}
           </div>
         )}
-      </Observer>
-    )}
-  </Droppable>);
+      </Draggable>
+    </div>
+  );
 };
 
 Term.displayName = 'Term';

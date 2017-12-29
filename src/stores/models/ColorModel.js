@@ -1,10 +1,20 @@
-// @flow
-
 import { observable } from 'mobx';
+import { serializable, identifier } from 'serializr';
+import { ID } from '../../utils/id';
 
 export class ColorModel {
-  @observable dept = '';
-  @observable color = '';
+
+  @observable
+  @serializable
+  dept = '';
+
+  @observable
+  @serializable
+  color = '';
+
+  @observable
+  @serializable(identifier())
+  id;
 
   constructor(
     dept = 'DEPT',
@@ -12,6 +22,7 @@ export class ColorModel {
   ) {
     this.dept = dept;
     this.color = color;
+    this.id = ID();
   }
 
 }

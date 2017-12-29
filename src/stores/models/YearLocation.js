@@ -1,34 +1,28 @@
 import { observable } from 'mobx';
 import { serializable, identifier, reference } from 'serializr';
+import { YearModel } from './YearModel';
 import { ID } from '../../utils/id';
-import { TermModel } from './TermModel';
 
-export class TermLocation {
+export class YearLocation {
 
   @observable
-  @serializable(reference(TermModel))
-  termRef;
+  @serializable(reference(YearModel))
+  yearRef;
 
   @observable
   @serializable
   yearIndex = -1;
 
   @observable
-  @serializable
-  termIndex = -1;
-
-  @observable
   @serializable(identifier())
   id;
 
   constructor(
-    termRef,
+    yearRef,
     yearIndex = -1,
-    termIndex = -1,
   ) {
-    this.termRef = termRef;
+    this.yearRef = yearRef;
     this.yearIndex = yearIndex;
-    this.termIndex = termIndex;
     this.id = ID();
   }
 }

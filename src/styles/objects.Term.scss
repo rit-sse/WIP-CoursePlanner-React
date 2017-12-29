@@ -2,16 +2,23 @@
 @import 'settings.colors.scss';
 
 .term {
-  float: left;
-  margin-right: 8px;
   text-align: center;
-  background-color: $card-background;
   width: $term-box-width;
-  padding-bottom: 20px;
+  padding-bottom: $term-box-spacing;
+
+  .term-box {
+    border: 1.5px solid rgba(0, 0, 0, 0.125);
+    border-radius: 0.25rem;
+    margin-right: $term-box-spacing;
+  }
 
   .credits-sum {
     font-size: $term-credits-font-size;
-    color: $light-gray;
     margin-bottom: 4px;
   }
+
+  .term-title-editing-box {
+    width: $course-box-width;
+  }
 }
+

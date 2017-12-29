@@ -1,12 +1,29 @@
-// @flow
-
 import { observable } from 'mobx';
+import { serializable, identifier, reference } from 'serializr';
+import { CourseModel } from './CourseModel';
+import { ID } from '../../utils/id';
 
 export class CourseLocation {
-  @observable courseRef;
-  @observable yearIndex = -1;
-  @observable termIndex = -1;
-  @observable courseIndex = -1;
+
+  @observable
+  @serializable(reference(CourseModel))
+  courseRef;
+
+  @observable
+  @serializable
+  yearIndex = -1;
+
+  @observable
+  @serializable
+  termIndex = -1;
+
+  @observable
+  @serializable
+  courseIndex = -1;
+
+  @observable
+  @serializable(identifier())
+  id;
 
   constructor(
     courseRef,
@@ -18,5 +35,6 @@ export class CourseLocation {
     this.yearIndex = yearIndex;
     this.termIndex = termIndex;
     this.courseIndex = courseIndex;
+    this.id = ID();
   }
 }

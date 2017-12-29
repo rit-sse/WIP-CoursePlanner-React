@@ -4,6 +4,7 @@ import { AppContainer } from 'react-hot-loader';
 import a11y  from 'react-a11y';
 import { Store } from './stores/Store';
 import { App } from './components/App';
+import 'bootstrap/dist/css/bootstrap.css';
 
 const env = process.env.NODE_ENV;
 const store = new Store();

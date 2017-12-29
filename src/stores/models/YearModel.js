@@ -1,11 +1,21 @@
-// @flow
-
 import { action, observable } from 'mobx';
+import { serializable, identifier, list, object } from 'serializr';
 import { TermModel } from './TermModel';
+import { ID } from '../../utils/id';
 
 export class YearModel {
-  @observable title = '';
-  @observable terms = [];
+
+  @observable
+  @serializable
+  title = '';
+
+  @observable
+  @serializable(list(object(TermModel)))
+  terms = [];
+
+  @observable
+  @serializable(identifier())
+  id = '';
 
   constructor(
     title= '2000',
@@ -13,6 +23,11 @@ export class YearModel {
   ) {
     this.title = title;
     this.terms = terms;
+    this.id = ID();
+  }
+
+  @action.bound setTitle(newTitle) {
+    this.title = newTitle.title;
   }
 
   @action.bound addTerm(
