@@ -71,7 +71,7 @@ export class Store {
   handleFileDrop([file]) {
     const fileReader = new FileReader();
     fileReader.onload = event => {
-      const json = event.explicitOriginalTarget.result;
+      const json = JSON.parse(event.explicitOriginalTarget.result);
       this.loadJSON(json);
     };
     fileReader.readAsText(file);
