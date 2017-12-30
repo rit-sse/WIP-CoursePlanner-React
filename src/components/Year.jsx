@@ -6,8 +6,9 @@ import { Draggable, Droppable } from 'react-beautiful-dnd';
 import { Button, Card, CardHeader, CardBody } from 'reactstrap';
 import { Term } from './Term';
 import { RIEInput } from 'riek';
-import _ from 'lodash';
+import { inlineValidate } from '../utils/inlineValidate';
 import '../styles/objects.Year.scss';
+import '../styles/utilities.InlineEdit.scss';
 
 export const Year = ({ year, colorScheme }) => {
   return (
@@ -37,7 +38,8 @@ export const Year = ({ year, colorScheme }) => {
                           value={year.title}
                           change={year.setTitle}
                           propName="title"
-                          validate={_.isString}
+                          classEditing="year-title-editing inline-editing"
+                          validate={inlineValidate}
                         />
                         <Button
                           color="link"

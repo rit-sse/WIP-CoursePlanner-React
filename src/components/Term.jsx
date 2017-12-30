@@ -6,8 +6,9 @@ import { Draggable, Droppable } from 'react-beautiful-dnd';
 import { Course } from './Course';
 import { Button } from 'reactstrap';
 import { RIEInput } from 'riek';
-import _ from 'lodash';
+import { inlineValidate } from '../utils/inlineValidate';
 import '../styles/objects.Term.scss';
+import '../styles/utilities.InlineEdit.scss';
 
 export const Term = ({ term, colorScheme }) => {
   return (
@@ -48,8 +49,8 @@ export const Term = ({ term, colorScheme }) => {
                           value={term.title}
                           change={term.setTitle}
                           propName="title"
-                          classEditing="term-title-editing-box"
-                          validate={_.isString}
+                          classEditing="term-title-editing-box inline-editing"
+                          validate={inlineValidate}
                         />
                       </div>
                       <div className="credits-sum">

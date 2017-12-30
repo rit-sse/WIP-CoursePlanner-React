@@ -42,6 +42,10 @@ export class PlanModel {
     this.id = ID();
   }
 
+  @action.bound setTitle({ title }) {
+    this.title = title;
+  }
+
   @action.bound addYear(
     title = '2000',
     terms = [],
