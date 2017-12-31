@@ -1,10 +1,7 @@
-// @flow
-
 import React from 'react';
 import { Observer } from 'mobx-react';
 import { Droppable } from 'react-beautiful-dnd';
-import { Button } from 'reactstrap';
-import { RIEInput } from 'riek';
+import { Button } from 'reactstrap'; import { RIEInput } from 'riek';
 import { Year } from './Year';
 import { inlineValidate } from '../utils/inlineValidate';
 import '../styles/objects.Plan.scss';
@@ -19,7 +16,7 @@ export const Plan = ({ plan }) => {
             <div>
               <RIEInput
                 value={plan.title}
-                change={plan.setTitle}
+                change={({ title }) => { plan.setTitle(title); }}
                 propName="title"
                 className="plan-title"
                 classEditing="inline-editing"
@@ -41,7 +38,8 @@ export const Plan = ({ plan }) => {
                   <Button
                     color="link"
                     onClick={() => plan.addYear()}
-                  >+</Button>
+                  >+
+                  </Button>
                 </div>
               </div>
             </div>

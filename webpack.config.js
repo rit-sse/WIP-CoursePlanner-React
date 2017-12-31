@@ -4,6 +4,7 @@ const path = require('path');
 const webpack = require('webpack');
 const CleanWebpackPlugin = require('clean-webpack-plugin');
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
+const UglifyJSPlugin = require('uglifyjs-webpack-plugin');
 const env = process.env.NODE_ENV || 'prod';
 const host = process.env.HOST || 'localhost';
 const port = process.env.PORT || 3000;
@@ -35,18 +36,14 @@ if (env === 'dev') {
       alias: {
         'react': path.join(__dirname, 'node_modules', 'react'),
       },
-      extensions: ['', '.js', '.jsx'],
-    },
-    resolveLoader: {
-      'fallback': path.join(__dirname, 'node_modules'),
+      extensions: ['*', '.js', '.jsx'],
     },
     module: {
       loaders: [
-        { test: /\.jsx?$/, exclude: /node_modules/, loaders: ['babel', 'eslint-loader'], include: path.join(__dirname, 'src')},
+        { test: /\.jsx?$/, exclude: /node_modules/, loaders: ['babel-loader', 'eslint-loader'], include: path.join(__dirname, 'src')},
         { test: /\.(scss|css)$/, loaders: ['style-loader', 'css-loader', 'sass-loader']},
       ],
     },
-    progress: true,
   }
 } else {
   module.exports = {
@@ -58,17 +55,16 @@ if (env === 'dev') {
     },
     module: {
       loaders: [
-        { test: /\.jsx?$/, exclude: /node_modules/, loaders: ['babel']},
+        { test: /\.jsx?$/, exclude: /node_modules/, loaders: ['babel-loader']},
         { test: /\.(scss|css)$/, loaders: ['style-loader', 'css-loader', 'sass-loader']},
       ],
     },
-    progress: true,
     resolve: {
-      modulesDirectories: [
+      modules: [
         'src',
         'node_modules',
       ],
-      extensions: ['', '.json', '.js', '.jsx'],
+      extensions: ['*', '.json', '.js', '.jsx'],
     },
     plugins: [
       new CleanWebpackPlugin(path.join(__dirname, 'dist')),
@@ -78,13 +74,20 @@ if (env === 'dev') {
         },
       }),
       new ExtractTextPlugin('[name].css'),
-      new webpack.optimize.DedupePlugin(),
-      new webpack.optimize.OccurenceOrderPlugin(),
       new webpack.optimize.UglifyJsPlugin({
-        compress: {
-          warnings: false,
-        },
-      }),
+      compress: {
+        screw_ie8: true,
+        warnings: false,
+      },
+      mangle: {
+        screw_ie8: true,
+      },
+      output: {
+        comments: false,
+        screw_ie8: true,
+      },
+      sourceMap: false,
+    }),
     ],
   }
 }

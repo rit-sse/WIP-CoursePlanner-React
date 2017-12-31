@@ -18,7 +18,7 @@ export class YearModel {
   id = '';
 
   constructor(
-    title= '2000',
+    title = 'Nth Year',
     terms = [],
   ) {
     this.title = title;
@@ -26,7 +26,7 @@ export class YearModel {
     this.id = ID();
   }
 
-  @action.bound setTitle({ title }) {
+  @action.bound setTitle(title) {
     this.title = title;
   }
 

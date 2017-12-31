@@ -1,10 +1,9 @@
 import { action, observable } from 'mobx';
 import { YearModel } from './YearModel';
-import { ColorModel } from './ColorModel';
 import { CourseLocation } from './CourseLocation';
 import { TermLocation } from './TermLocation';
 import { YearLocation } from './YearLocation';
-import { serializable, identifier, list, object } from 'serializr';
+import { serializable, identifier, list, map, object } from 'serializr';
 import { ID } from '../../utils/id';
 
 export class PlanModel {
@@ -17,8 +16,8 @@ export class PlanModel {
   isPublic = false;
 
   @observable
-  @serializable(list(object(ColorModel)))
-  colorScheme = [];
+  @serializable(map())
+  colorScheme = observable.map({'DEPT': 'green'});
 
   @observable
   @serializable(list(object(YearModel)))
@@ -31,18 +30,17 @@ export class PlanModel {
   constructor(
     title = 'My New Course Plan',
     isPublic = false,
-    colorScheme = [],
+    colorScheme = observable.map({'DEPT': 'green'}),
     years = [],
   ) {
     this.title = title;
     this.isPublic = isPublic;
     this.years = years;
     this.colorScheme = colorScheme;
-    this.colorScheme.push(new ColorModel());
     this.id = ID();
   }
 
-  @action.bound setTitle({ title }) {
+  @action.bound setTitle(title) {
     this.title = title;
   }
 
@@ -53,11 +51,8 @@ export class PlanModel {
     this.years.push(new YearModel(title, terms));
   }
 
-  @action.bound addColor(
-    dept = 'DEPT',
-    color = 'rgb(12, 148, 0)',
-  ) {
-    this.colorScheme.push(new ColorModel(dept, color));
+  @action.bound addColor(dept, color) {
+    this.colorScheme.set(dept, color);
   }
 
   findCourse(courseId) {
@@ -163,4 +158,22 @@ export class PlanModel {
       targetTerm.termRef.courses.splice(result.destination.index, 0, targetCourse.courseRef);
     }
   }
+
+  getAllCourses() {
+    //gets an array of courses in the format that
+    //https://react.semantic-ui.com/modules/dropdown expects
+    const allCourses = [];
+    this.years.forEach(year => {
+      year.terms.forEach(term => {
+        term.courses.forEach(course => {
+          const courseCode = course.getCourseCode();
+          if (!course.isPlaceholder) {
+            allCourses.push({ key: course.id, value: course, text: courseCode });
+          }
+        });
+      });
+    });
+    return allCourses;
+  }
+
 }

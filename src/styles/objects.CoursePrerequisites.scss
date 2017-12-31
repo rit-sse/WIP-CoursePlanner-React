@@ -1,0 +1,43 @@
+@import 'settings.constants.scss';
+
+.prereq-box {
+  margin-top: 10px; 
+  padding: 6px;
+  flex-direction: row!important;
+  flex-wrap: wrap;
+  align-items: center;
+
+  .btn-group {
+    margin: 4px;
+  }
+
+  .add-course-btn .btn-secondary {
+    width: $course-box-width;
+    height: $course-box-height;
+    margin-left: 9px;
+    border-radius: 0;
+  }
+
+  .dropdown {
+    font-weight: normal;
+  }
+
+  .dropdown-menu {
+    padding: 4px;
+    width: 350px;
+  }
+
+  .search-box {
+    display:flex;
+
+    .dropdown {
+      flex: 6;
+      margin-right: 4px;
+    }
+
+    .btn {
+      flex: 1;
+      max-height: 38px;
+    }
+  }
+}

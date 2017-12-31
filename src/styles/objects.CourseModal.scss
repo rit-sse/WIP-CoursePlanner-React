@@ -1,0 +1,42 @@
+@import "settings.constants.scss";
+
+.preview-modal-body {
+  display: flex;
+}
+
+.course-preview-wrap {
+  width: 112px;
+  height: 120px;
+  margin-top: 20px;
+  margin-right: 20px;
+}
+
+.preview-modal-left {
+
+}
+
+.preview-modal-right {
+  padding: 0 8px;
+  flex-grow: 2;
+}
+
+.modal-dialog {
+    max-width: 550px!important;
+}
+
+.advanced-section {
+  flex-grow: 3;
+}
+
+.lead {
+  border-bottom: 1px solid lightgray;
+  padding: 8px;
+}
+
+.expand-caret-state {
+  float: right;
+}
+
+#placeholderTooltip {
+  margin-left: 4px;
+}

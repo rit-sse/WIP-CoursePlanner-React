@@ -1,5 +1,3 @@
-// @flow
-
 import React from 'react';
 import { Observer } from 'mobx-react';
 import { Draggable, Droppable } from 'react-beautiful-dnd';
@@ -10,7 +8,7 @@ import { inlineValidate } from '../utils/inlineValidate';
 import '../styles/objects.Term.scss';
 import '../styles/utilities.InlineEdit.scss';
 
-export const Term = ({ term, colorScheme }) => {
+export const Term = ({ term }) => {
   return (
     <div className="term">
       <Draggable
@@ -47,7 +45,7 @@ export const Term = ({ term, colorScheme }) => {
                       >
                         <RIEInput
                           value={term.title}
-                          change={term.setTitle}
+                          change={({ title }) => { term.setTitle(title); }}
                           propName="title"
                           classEditing="term-title-editing-box inline-editing"
                           validate={inlineValidate}
@@ -66,7 +64,6 @@ export const Term = ({ term, colorScheme }) => {
                       </div>
                       {term.courses.map(
                         course => <Course
-                          colorScheme={colorScheme}
                           course={course}
                           key={course.id}
                         />

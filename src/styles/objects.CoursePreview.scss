@@ -1,0 +1,17 @@
+.course-preview {
+  transform: scale(1.5);
+}
+
+.deleteButton {
+  width: 75px;
+  height: 80px;
+  margin-bottom: -80px;
+  z-index: 3;
+  position: relative;
+  padding-top: 30px;
+  background-color: black;
+}
+
+.prereq {
+  margin: 4px 9px;
+}

@@ -1,5 +1,3 @@
-// @flow
-
 import React from 'react';
 import { Observer } from 'mobx-react';
 import { Draggable, Droppable } from 'react-beautiful-dnd';
@@ -10,7 +8,7 @@ import { inlineValidate } from '../utils/inlineValidate';
 import '../styles/objects.Year.scss';
 import '../styles/utilities.InlineEdit.scss';
 
-export const Year = ({ year, colorScheme }) => {
+export const Year = ({ year }) => {
   return (
     <Draggable
       draggableId={year.id}
@@ -36,7 +34,7 @@ export const Year = ({ year, colorScheme }) => {
                       <CardHeader className="title">
                         <RIEInput
                           value={year.title}
-                          change={year.setTitle}
+                          change={({ title }) => { year.setTitle(title); }}
                           propName="title"
                           classEditing="year-title-editing inline-editing"
                           validate={inlineValidate}
@@ -59,7 +57,6 @@ export const Year = ({ year, colorScheme }) => {
                               key={term.id}
                               courses={term.courses}
                               term={term}
-                              colorScheme={colorScheme}
                             />
                           )}
                           {droppableProvided.placeholder}

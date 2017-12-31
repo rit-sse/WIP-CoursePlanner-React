@@ -1,5 +1,5 @@
 import React from 'react';
-import {observer} from 'mobx-react';
+import { inject, observer } from 'mobx-react';
 import {
   ButtonDropdown,
   Collapse,
@@ -13,7 +13,7 @@ import Dropzone from 'react-dropzone';
 import { FaCloudUpload, FaDownload } from 'react-icons/lib/fa';
 import '../styles/objects.Navigation.scss';
 
-export const Navigation = observer(({ store }) => (
+export const Navigation = inject('store')(observer(({ store }) => (
   <div className="top-level-nav">
     <Navbar color="light" expand="sm" className="navbar-dark bg-dark">
       <NavbarBrand href="/">Plan Your Courses</NavbarBrand>
@@ -45,4 +45,4 @@ export const Navigation = observer(({ store }) => (
       </Collapse>
     </Navbar>
   </div>
-));
+)));

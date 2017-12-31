@@ -1,7 +1,7 @@
-import _ from 'lodash';
+import isString from 'lodash.isstring';
 
 export const inlineValidate = str => {
-  if (!_.isString(str)) return false;
+  if (!isString(str)) return false;
   if (str.trim().length < 1) return false;
   return true;
 };
