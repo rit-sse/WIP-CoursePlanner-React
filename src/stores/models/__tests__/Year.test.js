@@ -1,5 +1,5 @@
 import { YearModel } from '../YearModel';
-import { fall, spring } from './stubData';
+import { fall, spring } from '../../../seed/stubData';
 
 describe('A Term', () => {
   let myYear;

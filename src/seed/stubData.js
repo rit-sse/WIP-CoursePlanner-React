@@ -1,6 +1,6 @@
-import { CourseModel } from '../CourseModel';
-import { TermModel } from '../TermModel';
-import { YearModel } from '../YearModel';
+import { CourseModel } from '../stores/models/CourseModel';
+import { TermModel } from '../stores/models/TermModel';
+import { YearModel } from '../stores/models/YearModel';
 
 export const swen101 = new CourseModel(
   'Software Engineering Seminar',

@@ -1,4 +1,4 @@
-import { swen101, swen250 } from './stubData';
+import { swen101, swen250 } from '../../../seed/stubData';
 import { observable } from 'mobx';
 import { CourseModel } from '../CourseModel';
 
@@ -22,7 +22,7 @@ describe('A Course', () => {
     expect(myCourse.prereqs.length).toBe(0);
   });
 
-  it('should be able to set its placeholder status', () => {
+  describe('should be able to set its placeholder status', () => {
     it('should be false by default', () => {
       expect(myCourse.isPlaceholder).toBe(false);
     });

@@ -1,5 +1,5 @@
 import { TermModel } from '../TermModel';
-import { swen101, swen250 } from './stubData';
+import { swen101, swen250 } from '../../../seed/stubData';
 
 describe('A Term', () => {
   let myTerm = new TermModel();
