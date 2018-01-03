@@ -17,12 +17,16 @@ export class YearModel {
   @serializable(identifier())
   id = '';
 
+  @observable
+  dropdownOpen = false;
+
   constructor(
     title = 'Nth Year',
     terms = [],
   ) {
     this.title = title;
     this.terms = terms;
+    this.dropdownOpen = false;
     this.id = ID();
   }
 
@@ -35,6 +39,10 @@ export class YearModel {
     courses = [],
   ) {
     this.terms.push(new TermModel(title, courses));
+  }
+
+  @action.bound toggleDropdown() {
+    this.dropdownOpen = !this.dropdownOpen;
   }
 }
 

@@ -1,4 +1,7 @@
+@import 'settings.colors.scss';
 @import 'settings.constants.scss';
+
+$year-title-height: 42px;
 
 .year {
   text-align: center;
@@ -8,11 +11,27 @@
   margin-right: 10px;
   min-height: $year-box-height;
 
-  .title {
-    button {
+  >.title {
+    height: $year-title-height;
+
+    .dropdown {
       position: absolute;
-      top: 5px;
+      top: 0;
       right: 0;
+      height: $year-title-height;
+      color: $gray;
+
+      :hover {
+          color: $black;
+      }
+
+      button {
+        height: 100%;
+        background: none;
+        border: none;
+        cursor: pointer;
+        color: inherit;
+      }
     }
   }
 

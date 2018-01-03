@@ -25,7 +25,6 @@ export const Course = inject('store')(({ store, course }) => (
                 ...provided.draggableStyle,
               }}
             >
-              <i className="fa fa-exclamation prereq-warning-badge"></i>
               <div className="wrapper">
                 <div className="header-background"></div>
                 <h5 className="header-text">{course.dept} {course.num}</h5>
