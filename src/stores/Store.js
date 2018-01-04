@@ -51,4 +51,18 @@ export class Store {
     this.courseModalState = new CourseModalState(this.mainPlan);
   }
 
+  @action.bound savePlan() {
+    fetch('/api/plan/save', {
+      method: 'post',
+      headers: {
+        'Accept': 'application/json',
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify(this.mainPlan),
+    })
+    .then((response) => response.json())
+    .then((data) => {
+      console.log(data);
+    });
+  }
 }

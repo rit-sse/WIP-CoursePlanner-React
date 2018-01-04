@@ -9,9 +9,11 @@ import { SE } from './seed/SE';
 const env = process.env.NODE_ENV;
 const store = new Store();
 
-// FOR DEVELOPMENT ONLY,
-// DELETE THIS BEFORE RELEASE
-store.seed(SE);
+fetch('/api/plan/load')
+.then((response) => response.json())
+.then((plan) => {
+  store.seed(plan);
+});
 window.store = store;
 
 if(env === 'dev') {

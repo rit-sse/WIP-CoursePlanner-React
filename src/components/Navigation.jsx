@@ -1,6 +1,7 @@
 import React from 'react';
 import { inject, observer } from 'mobx-react';
 import {
+  Button,
   ButtonDropdown,
   Collapse,
   DropdownToggle,
@@ -8,15 +9,19 @@ import {
   DropdownItem,
   Navbar,
   NavbarBrand,
+  NavItem,
   Nav } from 'reactstrap';
 import Dropzone from 'react-dropzone';
-import { FaCloudUpload, FaDownload } from 'react-icons/lib/fa';
+import { FaCloudUpload, FaDownload, FaFloppyO } from 'react-icons/lib/fa';
 import '../styles/objects.Navigation.scss';
 
 export const Navigation = inject('store')(observer(({ store }) => (
   <div className="top-level-nav">
     <Navbar color="light" expand="sm" className="navbar-dark bg-dark">
       <NavbarBrand href="/">Plan Your Courses</NavbarBrand>
+      <Button onClick={store.savePlan.bind(store)}>
+        <FaFloppyO /> Save
+      </Button>
       <Collapse isOpen navbar>
         <Nav className="ml-auto" navbar>
           <ButtonDropdown isOpen={store.saveDropdownOpened} toggle={store.toggleSaveDropdown}>
