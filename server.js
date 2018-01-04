@@ -4,20 +4,22 @@ const methodOverride = require('method-override');
 const host = process.env.HOST || 'localhost';
 const port = process.env.PORT || 3000;
 const env = process.env.ENV || 'dev';
+const morgan = require('morgan');
+const mongoose = require('mongoose');
+mongoose.connect('mongodb://localhost/courseplanner');
 
 const express = require('express');
 let app = express();
 
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
-
-// parse application/vnd.api+json as json
 app.use(bodyParser.json({ type: 'application/vnd.api+json' }));
-
-// override with the X-HTTP-Method-Override header in the request. simulate DELETE/PUT
 app.use(methodOverride('X-HTTP-Method-Override'));
 
 app.use(express.static(path.join(__dirname, 'dist')));
+
+// Logger
+app.use(morgan('dev'));
 
 // Webpack hot reload middleware
 if(env === 'dev') {

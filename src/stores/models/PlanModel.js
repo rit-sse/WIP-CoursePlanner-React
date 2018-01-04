@@ -9,6 +9,10 @@ import { ID } from '../../utils/id';
 export class PlanModel {
   @observable
   @serializable
+  _id = '';
+
+  @observable
+  @serializable
   title = '';
 
   @observable

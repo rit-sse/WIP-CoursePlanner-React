@@ -7,16 +7,18 @@ import { Trash } from './Trash';
 import '../styles/objects.Workspace.scss';
 import '../styles/utilities.grab.scss';
 
-export const Workspace = inject('store')(observer(({ store }) => (
-  <div className="workspace">
-    <DragDropContext
-      onDragEnd={store.mainPlan.handleDragDrop.bind(store.mainPlan)}
-    >
-      <Plan plan={store.mainPlan} />
-      <CourseModal />
-      <Trash />
-    </DragDropContext>
-  </div>
-)));
+export const Workspace = inject('store')(observer(({ store }) => {
+  return (
+    <div className="workspace">
+      <DragDropContext
+        onDragEnd={store.mainPlan.handleDragDrop.bind(store.mainPlan)}
+      >
+        <Plan plan={store.mainPlan} />
+        <CourseModal />
+        <Trash />
+      </DragDropContext>
+    </div>
+  );
+}));
 
 Workspace.displayName = 'Workspace';

@@ -51,6 +51,14 @@ export class Store {
     this.courseModalState = new CourseModalState(this.mainPlan);
   }
 
+  @action.bound loadPlan(id) {
+    fetch('/api/plan/load?planId='+id)
+      .then((response) => response.json())
+      .then((data) => {
+        this.mainPlan = deserialize(PlanModel, data, () => {});
+      });
+  }
+
   @action.bound savePlan() {
     fetch('/api/plan/save', {
       method: 'post',
@@ -60,9 +68,9 @@ export class Store {
       },
       body: JSON.stringify(this.mainPlan),
     })
-    .then((response) => response.json())
-    .then((data) => {
-      console.log(data);
-    });
+      .then((response) => response.json())
+      .then((data) => {
+        this.mainPlan = deserialize(PlanModel, data, () => {});
+      });
   }
 }
