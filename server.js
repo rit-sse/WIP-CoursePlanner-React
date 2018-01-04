@@ -1,12 +1,10 @@
 const path = require('path');
 const bodyParser     = require('body-parser');
 const methodOverride = require('method-override');
-const host = process.env.HOST || 'localhost';
-const port = process.env.PORT || 3000;
-const env = process.env.ENV || 'dev';
 const morgan = require('morgan');
 const mongoose = require('mongoose');
-mongoose.connect('mongodb://localhost/courseplanner');
+const config = require('./config/config');
+mongoose.connect(config.db.address);
 
 const express = require('express');
 let app = express();
@@ -22,7 +20,7 @@ app.use(express.static(path.join(__dirname, 'dist')));
 app.use(morgan('dev'));
 
 // Webpack hot reload middleware
-if(env === 'dev') {
+if(config.env === 'dev') {
   const webpack = require('webpack');
   const webpackMiddleware = require('webpack-dev-middleware');
   const config = require('./webpack.config');
@@ -47,4 +45,4 @@ app.get('/', (req, res) => {
   res.sendFile(__dirname + '/index.html');
 });
 
-app.listen(port, () => console.log("Listening on port", port));
+app.listen(config.port, () => console.log("Listening on port", config.port));
