@@ -31,7 +31,7 @@ const endpoints = {
   },
 
   save: (req, res) => {
-    Plan.findOneAndUpdate({ _id: req.body._id}, req.body, { new: true })
+    Plan.findOneAndUpdate({ _id: req.body._id}, req.body, { new: true, upsert: true })
       .then((plan) => res.send(plan))
       .catch((err) => res.status(500).send(err));
   },
