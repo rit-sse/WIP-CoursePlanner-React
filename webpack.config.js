@@ -5,7 +5,7 @@ const webpack = require('webpack');
 const CleanWebpackPlugin = require('clean-webpack-plugin');
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
 const UglifyJSPlugin = require('uglifyjs-webpack-plugin');
-const env = process.env.NODE_ENV || 'prod';
+const env = process.env.ENV || 'prod';
 const host = process.env.HOST || 'localhost';
 const port = process.env.PORT || 3000;
 
