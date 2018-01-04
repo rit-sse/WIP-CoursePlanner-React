@@ -2,6 +2,7 @@
 
 
 ## Getting Started
+Note: Run a mongodb server locally
 ```
 $ git clone <repo url>
 $ cd <project dir>
