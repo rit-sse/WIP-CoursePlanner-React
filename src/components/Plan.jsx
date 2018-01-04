@@ -8,6 +8,10 @@ import '../styles/objects.Plan.scss';
 import '../styles/utilities.InlineEdit.scss';
 
 export const Plan = ({ plan }) => {
+  if(!plan) {
+    return <p>eek, im naked</p>;
+  }
+
   return (
     <Droppable droppableId={plan.title} type="PLAN-YEAR" direction="horizontal">
       {(provided) => (

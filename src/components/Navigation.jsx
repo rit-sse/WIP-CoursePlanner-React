@@ -22,7 +22,10 @@ export const Navigation = inject('store')(observer(({ store }) => (
             handleFileDrop={store.handleFileDrop.bind(store)}
             giveUserJSON={store.giveUserJSON.bind(store)}
           />
-          <UserNavMenu user={store.user} />
+          <UserNavMenu
+            user={store.user}
+            loginFn={() => alert('TODO')}
+          />
         </Nav>
       </Collapse>
     </Navbar>
