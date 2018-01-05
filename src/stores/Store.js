@@ -1,6 +1,7 @@
 import { action, observable } from 'mobx';
 import { PlanModel } from './models/PlanModel';
 import { CourseModalState } from './models/CourseModalState';
+import { UserModel } from './models/UserModel';
 import { serialize, deserialize } from 'serializr';
 import { saveAs } from 'file-saver';
 
@@ -15,9 +16,13 @@ export class Store {
   @observable
   saveDropdownOpened = false;
 
+  @observable
+  user;
+
   constructor() {
     this.mainPlan = new PlanModel();
     this.courseModalState = new CourseModalState(this.mainPlan);
+    this.user = new UserModel();
   }
 
   handleFileDrop([file]) {

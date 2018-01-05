@@ -46,6 +46,9 @@ jspm_packages
 # Yarn Integrity file
 .yarn-integrity
 
+# Secrets file
+.env
+
 node_modules/
 coverage/
 dist/
