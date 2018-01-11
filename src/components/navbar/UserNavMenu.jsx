@@ -35,7 +35,7 @@ const UserMenu = observer(({ user }) => (
 
 export default observer(({ user }) => {
   if(!user.isLoggedIn) {
-    return <Button href="api/auth/google">Login</Button>
+    return <Button>Login / Sign Up</Button>
   }
   return <UserMenu user={user} />;
 });

@@ -9,7 +9,7 @@ const JwtStrategy = passportJWT.Strategy;
 const GoogleStrategy = require('passport-google-oauth').OAuth2Strategy;
 
 const jwtOptions = {
-  jwtFromRequest: ExtractJwt.fromAuthHeader(),
+  jwtFromRequest: ExtractJwt.fromAuthHeaderAsBearerToken(),
   secretOrKey: config.auth.jwt_secret,
 };
 
