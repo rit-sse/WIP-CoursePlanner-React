@@ -2,7 +2,7 @@ import { Headers } from './base';
 import { serialize, deserialize } from 'serializr';
 import { PlanModel } from '../stores/models/PlanModel';
 
-export const Methods = {
+export const PlanApi = {
   savePlan: (plan) => {
     return fetch('/api/plan/save', {
       method: 'POST',

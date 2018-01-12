@@ -5,7 +5,7 @@ const bcrypt = require('bcrypt-nodejs');
 
 const userSchema = new Schema({
   localAuth: {
-    email: { type: mongoose.Schema.Types.Email, unique: true },
+    email: { type: mongoose.SchemaTypes.Email, unique: true },
     password: { type: String, select: false },
   },
   googleId: {
@@ -20,7 +20,7 @@ const userSchema = new Schema({
   },
 });
 
-userSchema.pre('save', (next) => {
+userSchema.pre('save', function (next) {
   const user = this;
   if(this.isModified('localAuth.password') || this.isNew) {
     bcrypt.genSalt(10, (err, salt) => {
@@ -40,7 +40,7 @@ userSchema.pre('save', (next) => {
   }
 });
 
-userSchema.methods.comparePassword = (passw, cb) => {
+userSchema.methods.comparePassword = function (passw, cb) {
   bcrypt.compare(passw, this.localAuth.password, (err, isMatch) => {
     if (err) {
       return cb(err);

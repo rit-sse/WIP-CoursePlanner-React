@@ -11,8 +11,12 @@ export const Token = () => {
   return token;
 };
 
-export const Methods = {
+export const AuthApi = {
   localRegister: (email, password) => {
+    if(!email || !password) {
+      return Promise.reject('Email and password cannot be blank');
+    }
+
     return fetch('/api/auth/localRegister', {
       method: 'POST',
       headers: Headers(),
@@ -21,12 +25,16 @@ export const Methods = {
       .then((response) => response.json())
       .then((data) => {
         //TODO save the token
-        console.log(data);
-        return true;
+        token = data.token;
+        return data.user;
       });
   },
 
   localLogin: (email, password) => {
+    if(!email || !password) {
+      return Promise.reject('Email and password cannot be blank');
+    }
+
     return fetch('/api/auth/localLogin', {
       method: 'POST',
       headers: Headers(),
@@ -35,8 +43,8 @@ export const Methods = {
       .then((response) => response.json())
       .then((data) => {
         //TODO save the token
-        console.log(data);
-        return true;
+        token = data.token;
+        return data.user;
       });
   },
 

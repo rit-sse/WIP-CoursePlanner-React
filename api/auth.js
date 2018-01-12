@@ -14,7 +14,6 @@ const jwtOptions = {
 };
 
 passport.use(new JwtStrategy(jwtOptions, (jwt_payload, next) => {
-  console.log('payload received', jwt_payload);
   User.findOne({ _id: jwt_payload._id})
     .then((user) => {
       next(null, user);
@@ -28,28 +27,38 @@ passport.use(new JwtStrategy(jwtOptions, (jwt_payload, next) => {
 const endpoints = {
   localLogin: (req, res) => {
     User.findOne({
-      email: req.body.email,
-    }, '+password')
+      'localAuth.email': req.body.email,
+    }, '+localAuth.password')
       .then((user) => {
+        if(!user) {
+          throw 'User not found';
+        }
+
         user.comparePassword(req.body.password, (err, isMatch) => {
           if (!isMatch) {
             throw 'Invalid email or password';
           }
 
+          let cleanedUser = JSON.parse(JSON.stringify(user));
+          delete cleanedUser.localAuth.password;
+
           const payload = { _id: user._id };
           const token = jwt.sign(payload, jwtOptions.secretOrKey);
-          res.json({ message: 'ok', token: token });
+          res.json({ message: 'ok', token: token, user: cleanedUser });
         });
       })
       .catch((err) => {
+        console.log(err); //TODO use real logger
         res.status(401).send({ message: 'Unable to login', error: err });
       });
   },
 
   localRegister: (req, res) => {
     User.create({
-      email: req.body.email,
-      password: req.body.password,
+      localAuth: {
+        email: req.body.email,
+        password: req.body.password,
+      },
     })
       .then((user) => {
         console.log('User created', user);//TODO use logger
