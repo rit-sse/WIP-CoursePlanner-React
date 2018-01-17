@@ -75,5 +75,4 @@ export class PlanModel {
     });
     return allCourses;
   }
-
 }

@@ -42,7 +42,7 @@ export default class SaveLoadDropdown extends React.Component {
             </p>
           </Dropzone>
           <DropdownItem divider />
-          <DropdownItem onClick={this.props.giveUserJSON}>
+          <DropdownItem onClick={this.props.saveAsJSON}>
             <FaDownload />
             <span>Save to your computer</span>
           </DropdownItem>

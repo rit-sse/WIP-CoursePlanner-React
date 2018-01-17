@@ -20,11 +20,13 @@ export const Navigation = inject('store')(observer(({ store }) => (
         <Nav className="ml-auto" navbar>
           <SaveLoadDropdown
             handleFileDrop={store.handleFileDrop.bind(store)}
-            giveUserJSON={store.giveUserJSON.bind(store)}
+            saveAsJSON={store.saveAsJSON.bind(store)}
           />
           <UserNavMenu
             user={store.user}
-            loginFn={() => alert('TODO')}
+            loginFn={store.localLogin.bind(store)}
+            registerFn={store.localRegister.bind(store)}
+            logoutFn={store.logout.bind(store)}
           />
         </Nav>
       </Collapse>

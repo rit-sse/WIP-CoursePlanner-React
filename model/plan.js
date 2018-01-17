@@ -1,5 +1,4 @@
-var mongoose = require('mongoose');
-var Schema = mongoose.Schema;
+const mongoose = require('mongoose');
 
 module.exports = mongoose.model('Plan', {
   title : {

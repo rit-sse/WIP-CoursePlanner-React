@@ -1,8 +1,11 @@
 import { action, observable } from 'mobx';
 import { PlanModel } from './models/PlanModel';
 import { CourseModalState } from './models/CourseModalState';
+import { UserModel } from './models/UserModel';
 import { serialize, deserialize } from 'serializr';
 import { saveAs } from 'file-saver';
+import { PlanApi } from '../api/plan';
+import { AuthApi } from '../api/auth';
 
 export class Store {
 
@@ -13,11 +16,12 @@ export class Store {
   courseModalState;
 
   @observable
-  saveDropdownOpened = false;
+  user;
 
   constructor() {
     this.mainPlan = new PlanModel();
     this.courseModalState = new CourseModalState(this.mainPlan);
+    this.user = null;
   }
 
   handleFileDrop([file]) {
@@ -29,19 +33,14 @@ export class Store {
     fileReader.readAsText(file);
   }
 
-  giveUserJSON() {
+  saveAsJSON() {
     const planJson = serialize(this.mainPlan);
-    const file = new File([JSON.stringify(planJson)], `myPlan${Date.now()}.json`, {type: 'text/plain;charset=utf-8'});
+    const file = new File(
+      [JSON.stringify(planJson)],
+      `myPlan${Date.now()}.json`,
+      {type: 'text/plain;charset=utf-8'});
+
     saveAs(file);
-  }
-
-  @action.bound seed(seedObject) {
-    // FOR DEVELOPMENT ONLY
-    this.loadJSON(seedObject);
-  }
-
-  @action.bound toggleSaveDropdown() {
-    this.saveDropdownOpened = !this.saveDropdownOpened;
   }
 
   @action.bound loadJSON(json) {
@@ -52,25 +51,35 @@ export class Store {
   }
 
   @action.bound loadPlan(id) {
-    fetch('/api/plan/load?planId='+id)
-      .then((response) => response.json())
-      .then((data) => {
-        this.mainPlan = deserialize(PlanModel, data, () => {});
+    PlanApi.loadPlan(id)
+      .then((updatedPlan) => {
+        this.mainPlan = updatedPlan;
       });
   }
 
   @action.bound savePlan() {
-    fetch('/api/plan/save', {
-      method: 'post',
-      headers: {
-        'Accept': 'application/json',
-        'Content-Type': 'application/json'
-      },
-      body: JSON.stringify(this.mainPlan),
-    })
-      .then((response) => response.json())
-      .then((data) => {
-        this.mainPlan = deserialize(PlanModel, data, () => {});
+    PlanApi.savePlan(this.mainPlan)
+      .then((updatedPlan) => {
+        this.mainPlan = updatedPlan;
       });
+  }
+
+  @action.bound localLogin(email, password) {
+    AuthApi.localLogin(email, password)
+      .then((user) => {
+        this.user = user;
+      });
+  }
+
+  @action.bound localRegister(email, password) {
+    AuthApi.localRegister(email, password)
+      .then((user) => {
+        this.user = user;
+      });
+  }
+
+  @action.bound logout() {
+    AuthApi.logout();
+    this.user = null;
   }
 }
