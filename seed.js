@@ -1,6 +1,9 @@
-if (!process.env.ENV) {
-  throw 'Seeding is a destructive action.'+
-        'You *must* specify the environment using `ENV=dev|test|prod`';
+const logger = require('./logger');
+if(!process.env.ENV) {
+  logger.error(
+    'Seeding is a destructive action.'+
+    'You *must* specify the environment using `ENV=dev|test|prod`');
+  process.exit(1);
 }
 
 const config = require('./config/config');
@@ -10,10 +13,9 @@ mongoose.connect(config.db.address);
 
 const Plan = require('./model/plan');
 const SEDefault = require('./seed-data/SE');
-
 const User = require('./model/user');
 
-console.log('Removing all users and plans');
+logger.info('Removing all users and plans');
 User.remove({}).exec();
 Plan.remove({})
   .then(() => {
@@ -39,7 +41,8 @@ Plan.remove({})
     }
     process.exit(0);
   })
-  .catch(error => {
-    console.log(error);
+  .catch((error) => {
+    logger.error(error);
+    process.exit(1);
   });
 
