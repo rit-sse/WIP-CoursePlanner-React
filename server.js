@@ -1,10 +1,17 @@
+const logger = require('./logger');
 const path = require('path');
 const bodyParser     = require('body-parser');
 const methodOverride = require('method-override');
 const morgan = require('morgan');
 const mongoose = require('mongoose');
 const config = require('./config/config');
-mongoose.connect(config.db.address);
+mongoose.connect(config.db.address)
+  .then(() => {
+    logger.info('Connected to mongo server at ', config.db.address);
+  })
+  .catch((error) => {
+    logger.error(error);
+  });
 
 const express = require('express');
 let app = express();
@@ -17,7 +24,7 @@ app.use(methodOverride('X-HTTP-Method-Override'));
 app.use(express.static(path.join(__dirname, 'dist')));
 
 // Logger
-app.use(morgan('dev'));
+app.use(morgan('dev', { 'stream': logger.stream }));
 
 // Webpack hot reload middleware
 if(config.env === 'dev') {
@@ -45,4 +52,4 @@ app.get('/', (req, res) => {
   res.sendFile(__dirname + '/index.html');
 });
 
-app.listen(config.port, () => console.log("Listening on port", config.port));
+app.listen(config.port, () => logger.info('Listening on port', config.port));
