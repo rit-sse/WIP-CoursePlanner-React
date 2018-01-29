@@ -5,12 +5,17 @@ const methodOverride = require('method-override');
 const morgan = require('morgan');
 const mongoose = require('mongoose');
 const config = require('./config/config');
+logger.debug('Environment is', config.env);
 mongoose.connect(config.db.address)
   .then(() => {
     logger.info('Connected to mongo server at ', config.db.address);
   })
   .catch((error) => {
-    logger.error(error);
+    logger.error(
+      'Failed to connect to mongo at',
+      config.db.address,
+      'due to:',
+      error);
   });
 
 const express = require('express');
