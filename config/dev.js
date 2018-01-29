@@ -1,6 +1,6 @@
 module.exports = {
   db: {
-    address: 'mongodb://localhost/courseplanner',
+    address: 'mongodb://127.0.0.1:27017/courseplanner',
   },
   env: 'dev',
   host: process.env.HOST || 'localhost',

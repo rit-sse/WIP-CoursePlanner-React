@@ -1,7 +1,6 @@
 import { action, observable } from 'mobx';
 import { PlanModel } from './models/PlanModel';
 import { CourseModalState } from './models/CourseModalState';
-import { UserModel } from './models/UserModel';
 import { serialize, deserialize } from 'serializr';
 import { saveAs } from 'file-saver';
 import { PlanApi } from '../api/plan';
